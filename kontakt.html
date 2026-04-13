@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="description" content="Kontakt — Noć Muzičkih Fenjera. Karte, pitanja, saradnja." />
+  <title>Kontakt — Noć Muzičkih Fenjera</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="page">
+  <div class="lantern-field" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="logo" href="index.html">Noć Muzičkih Fenjera</a>
+    <button class="nav-toggle" type="button" aria-label="Meni" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" aria-label="Glavna navigacija">
+      <a href="index.html">Početak</a>
+      <a href="prica.html">Priča</a>
+      <a href="programi.html">Programi</a>
+      <a href="umetnici.html">Umetnici</a>
+      <a href="kontakt.html" aria-current="page">Kontakt</a>
+    </nav>
+  </header>
+
+  <main class="page-main">
+    <section class="section section--contact section--page-top">
+      <div class="section__container section__container--narrow">
+        <h1 class="section__title">Kontakt</h1>
+        <p class="section__intro">Pitanja o kartama, saradnji ili privatnim večerima — pišite nam.</p>
+        <form class="contact-form" action="#" method="post">
+          <label>
+            Ime
+            <input type="text" name="ime" autocomplete="name" required placeholder="Vaše ime" />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" autocomplete="email" required placeholder="vas@email.com" />
+          </label>
+          <label>
+            Poruka
+            <textarea name="poruka" rows="5" required placeholder="Koji koncert ili kakva saradnja?"></textarea>
+          </label>
+          <button class="btn btn--primary btn--wide" type="submit">Pošalji poruku</button>
+          <p class="form-note">Forma je statička za sada — za ozbiljne upite koristite email ispod.</p>
+        </form>
+        <div class="contact-alt">
+          <p><strong>Email:</strong> <a href="mailto:info@nocmuzickihfenjera.com">info@nocmuzickihfenjera.com</a></p>
+          <p><strong>Instagram (uskoro):</strong> <a href="#" rel="noopener noreferrer">@nocmuzickihfenjera</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Noć Muzičkih Fenjera · veče pod fenjerima</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

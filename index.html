@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="description" content="Noć Muzičkih Fenjera — intimno muzičko veče u srcu Beograda, Konak Kneginje Ljubice, Galerija pod svodovima." />
+  <title>Noć Muzičkih Fenjera</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="page page--splash">
+  <div class="lantern-field" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="logo" href="index.html">Noć Muzičkih Fenjera</a>
+    <button class="nav-toggle" type="button" aria-label="Meni" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" aria-label="Glavna navigacija">
+      <a href="index.html" aria-current="page">Početak</a>
+      <a href="prica.html">Priča</a>
+      <a href="programi.html">Programi</a>
+      <a href="umetnici.html">Umetnici</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+  </header>
+
+  <main class="splash">
+    <div class="splash__art" aria-hidden="true">
+      <!-- Luksuzni dekorativni fenjer (SVG) -->
+      <svg class="lantern-svg" viewBox="0 0 280 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <defs>
+          <linearGradient id="l-brass" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#c9a05c" />
+            <stop offset="35%" stop-color="#f0d18a" />
+            <stop offset="65%" stop-color="#8a6a38" />
+            <stop offset="100%" stop-color="#5c4520" />
+          </linearGradient>
+          <linearGradient id="l-glass" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="rgba(40,36,32,0.85)" />
+            <stop offset="45%" stop-color="rgba(90,78,58,0.35)" />
+            <stop offset="100%" stop-color="rgba(30,26,22,0.9)" />
+          </linearGradient>
+          <radialGradient id="l-flame" cx="50%" cy="55%" r="55%">
+            <stop offset="0%" stop-color="#fff4d4" />
+            <stop offset="35%" stop-color="#ffc56d" />
+            <stop offset="70%" stop-color="#d4832a" />
+            <stop offset="100%" stop-color="rgba(80,40,10,0)" />
+          </radialGradient>
+          <filter id="l-glow" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="6" result="b" />
+            <feMerge>
+              <feMergeNode in="b" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <!-- Lanac -->
+        <path fill="url(#l-brass)" d="M134 8h12v32h-12zM138 40a6 6 0 1 0 12 0 6 6 0 0 0-12 0zm-8 8a6 6 0 1 0 12 0 6 6 0 0 0-12 0z" />
+        <ellipse cx="140" cy="6" rx="10" ry="5" fill="#6b5228" />
+        <!-- Kuka -->
+        <path fill="url(#l-brass)" d="M120 52h40l-4 18h-32z" />
+        <!-- Gornji vijenac -->
+        <path fill="url(#l-brass)" d="M70 70h140l12 28H58z" />
+        <!-- Stakleni kućište -->
+        <path fill="url(#l-glass)" stroke="url(#l-brass)" stroke-width="3" d="M78 108h124v200H78z" opacity="0.92" />
+        <!-- Panel linije -->
+        <path stroke="rgba(200,170,120,0.25)" stroke-width="1.5" d="M108 108v200M140 108v200M172 108v200" />
+        <!-- Unutrašnje svetlo -->
+        <ellipse cx="140" cy="210" rx="48" ry="72" fill="url(#l-flame)" filter="url(#l-glow)" class="lantern-svg__pulse" />
+        <!-- Donji prsten -->
+        <path fill="none" stroke="url(#l-brass)" stroke-width="4" d="M72 312h136" />
+        <!-- Baza -->
+        <path fill="url(#l-brass)" d="M62 318h156l-10 36H72z" />
+        <path fill="#4a3820" d="M86 354h108l-6 20H92z" />
+        <!-- Kratki ornament -->
+        <circle cx="140" cy="330" r="6" fill="#2a2014" stroke="#c9a05c" stroke-width="1.5" />
+      </svg>
+    </div>
+
+    <div class="splash__content">
+      <div class="splash__copy">
+        <p class="splash__eyebrow">veče pod svetlom fenjera</p>
+        <h1 class="splash__title">Noć Muzičkih Fenjera</h1>
+        <p class="splash__event-lead">Intimno muzičko veče u srcu Beograda</p>
+        <p class="splash__event-venue">Konak Kneginje Ljubice — Galerija pod svodovima</p>
+        <p class="splash__tagline">Zaronite u zvuk klavira i tišinu koja sluša sa vama.</p>
+        <div class="splash__dive">
+          <a class="btn btn--primary btn--dive" href="programi.html">
+            <span class="btn--dive__label">Uđi u veče</span>
+            <span class="btn--dive__hint">programi · koncerti · fenjeri</span>
+          </a>
+        </div>
+        <nav class="splash__quick" aria-label="Brzi linkovi">
+          <a href="prica.html">Priča</a>
+          <span class="splash__dot" aria-hidden="true">·</span>
+          <a href="umetnici.html">Umetnici</a>
+          <span class="splash__dot" aria-hidden="true">·</span>
+          <a href="kontakt.html">Kontakt</a>
+        </nav>
+      </div>
+      <a class="splash__promo" href="programi.html">
+        <img
+          src="assets/images/Matthew%20Matej%20plakat.png"
+          width="1200"
+          height="1697"
+          alt="Plakat: Matthew Mayer i Matej Jovanović — spektakl"
+          loading="lazy"
+          decoding="async"
+        />
+        <span class="splash__promo-caption">Spektakl · maj 2026</span>
+      </a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Noć Muzičkih Fenjera · veče pod fenjerima</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
