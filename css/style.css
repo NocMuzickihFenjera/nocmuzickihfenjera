@@ -144,31 +144,62 @@ a:hover {
 }
 
 @media (max-width: 768px) {
+  /*
+   * backdrop-filter na headeru pravi containing block — fixed .site-nav
+   * ostaje u okviru uske trake headera i „seče“ meni (vidljiva ~3 stavke).
+   * Na mobilnom uklanjamo blur i dajemo čvrstu pozadinu.
+   */
+  .site-header {
+    backdrop-filter: none;
+    background: rgba(10, 12, 16, 0.97);
+  }
+
+  .logo {
+    position: relative;
+    z-index: 102;
+  }
+
   .nav-toggle {
     display: flex;
-    z-index: 101;
+    z-index: 102;
+    position: relative;
   }
 
   .site-nav {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
-    background: rgba(10, 12, 16, 0.97);
+    gap: 1.75rem;
+    padding: max(5.5rem, env(safe-area-inset-top, 0px)) 1.5rem max(2rem, env(safe-area-inset-bottom, 0px));
+    box-sizing: border-box;
+    background: var(--bg-deep);
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: opacity 0.3s var(--ease), visibility 0.3s;
+    z-index: 101;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .site-header.is-open .site-nav {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
   }
 
   .site-nav a {
     font-size: 1.25rem;
+    color: var(--text);
+    flex-shrink: 0;
   }
 }
 
