@@ -122,6 +122,21 @@
     priceValueEl.textContent = "Ukupno: " + formatRsd(total) + " (" + parts.join(", ") + ")." + note;
   }
 
+  function attachZeroClearBehavior(inputEl) {
+    if (!inputEl) return;
+    inputEl.addEventListener("focus", function () {
+      if (inputEl.value === "0") {
+        inputEl.value = "";
+      }
+    });
+    inputEl.addEventListener("blur", function () {
+      if (inputEl.value === "") {
+        inputEl.value = "0";
+      }
+      updatePriceEstimate();
+    });
+  }
+
   if (contactForm && priceValueEl) {
     Array.prototype.forEach.call(concertInputs, function (input) {
       input.addEventListener("change", updatePriceEstimate);
@@ -132,5 +147,7 @@
     if (discountSeatsInput) {
       discountSeatsInput.addEventListener("input", updatePriceEstimate);
     }
+    attachZeroClearBehavior(standardSeatsInput);
+    attachZeroClearBehavior(discountSeatsInput);
   }
 })();
