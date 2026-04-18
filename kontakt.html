@@ -32,9 +32,9 @@
     <section class="section section--contact section--page-top">
       <div class="section__container section__container--narrow">
         <h1 class="section__title">Karte i kontakt</h1>
-        <p class="section__intro">Rezervacije su trenutno putem upita. Izaberite koncerte i pošaljite zahtev, a mi vas kontaktiramo sa potvrdom.</p>
+        <p class="section__intro">Rezervacije su trenutno putem upita.</p>
         <div class="pricing-strip pricing-strip--contact">
-          <p class="pricing-strip__lead">Cene ulaznica i paketi</p>
+          <p class="pricing-strip__lead">Istaknute cene i način rezervacije</p>
           <div class="pricing-strip__grid">
             <article class="pricing-pill">
               <h2>1200 RSD</h2>
@@ -46,7 +46,7 @@
             </article>
             <article class="pricing-pill">
               <h2>6000 RSD</h2>
-              <p>Paket za bilo koja 4 koncerta (umesto 8000 RSD)</p>
+              <p>Paket za bilo koje 4 karte (umesto 8000 RSD)</p>
             </article>
             <article class="pricing-pill">
               <h2>12000 RSD</h2>
@@ -57,7 +57,7 @@
               <p>Matthew paket: 30. maj + 31. maj + 4. jul</p>
             </article>
           </div>
-          <p class="pricing-strip__note">Napomena: paket popusti ne važe za mlađe od 26 i starije od 65 godina.</p>
+          <p class="pricing-strip__note">Rezervacije su trenutno putem upita.</p>
         </div>
         <form class="contact-form" action="https://formsubmit.co/info@nocmuzickihfenjera.com" method="POST">
           <input type="hidden" name="_subject" value="Upit sa sajta — Noć Muzičkih Fenjera" />
@@ -86,20 +86,16 @@
             </div>
           </fieldset>
           <label>
-            Koliko mesta
-            <input type="number" name="broj_mesta" min="1" step="1" required placeholder="Npr. 2" />
+            Broj standardnih karata (26-65)
+            <input type="number" name="broj_mesta_standard" id="standard-seats" min="0" step="1" value="0" />
           </label>
           <label>
-            Kategorija cene
-            <select name="kategorija_cene" id="age-category" required>
-              <option value="" selected disabled>Odaberite kategoriju</option>
-              <option value="discount">Imam manje od 26 ili više od 65 godina</option>
-              <option value="standard">Standardna cena</option>
-            </select>
+            Broj povlašćenih karata (manje od 26 i više od 65)
+            <input type="number" name="broj_mesta_povlasceno" id="discount-seats" min="0" step="1" value="0" />
           </label>
           <div class="price-estimate" id="price-estimate" aria-live="polite">
             <strong>Procena cene:</strong>
-            <span id="price-estimate-value">Odaberite koncert(e), broj mesta i kategoriju.</span>
+            <span id="price-estimate-value">Odaberite koncert(e) i unesite broj karata po kategoriji.</span>
           </div>
           <label>
             Poruka / dodatne napomene
