@@ -470,6 +470,63 @@ main {
   padding-top: 3rem;
 }
 
+.pricing-strip {
+  margin: 0 auto 2rem;
+  padding: 1rem;
+  border: 1px solid rgba(228, 165, 74, 0.32);
+  border-radius: 16px;
+  background: linear-gradient(150deg, rgba(228, 165, 74, 0.14), rgba(22, 26, 38, 0.92));
+}
+
+.pricing-strip__lead {
+  margin: 0 0 0.9rem;
+  text-align: center;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: #f3d9ac;
+  font-weight: 600;
+}
+
+.pricing-strip__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.7rem;
+}
+
+.pricing-pill {
+  padding: 0.75rem;
+  border-radius: 14px;
+  border: 1px solid rgba(242, 235, 227, 0.1);
+  background: rgba(10, 12, 16, 0.62);
+}
+
+.pricing-pill h2 {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: #fff2dc;
+}
+
+.pricing-pill p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.pricing-pill--accent {
+  border-color: rgba(228, 165, 74, 0.45);
+  background: rgba(228, 165, 74, 0.12);
+}
+
+.pricing-strip__note {
+  margin: 0.8rem 0 0;
+  text-align: center;
+  color: #d7cfc2;
+  font-size: 0.78rem;
+}
+
 .concert-list {
   list-style: none;
   margin: 0;
@@ -545,6 +602,14 @@ main {
   margin: 0;
   color: var(--text-muted);
   font-size: 0.95rem;
+}
+
+.concert-card__price {
+  margin-top: 0.5rem;
+  color: #f1ddba;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .concert-card__tag {
@@ -671,6 +736,7 @@ main {
 }
 
 .contact-form input,
+.contact-form select,
 .contact-form textarea {
   width: 100%;
   margin-top: 0.45rem;
@@ -685,6 +751,7 @@ main {
 }
 
 .contact-form input:focus,
+.contact-form select:focus,
 .contact-form textarea:focus {
   outline: none;
   border-color: rgba(228, 165, 74, 0.45);
@@ -694,6 +761,71 @@ main {
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
   color: rgba(168, 159, 148, 0.6);
+}
+
+.contact-form__fieldset {
+  margin: 0 0 1.25rem;
+  padding: 0.9rem 1rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(18, 21, 30, 0.35);
+}
+
+.contact-form__fieldset legend {
+  padding: 0 0.35rem;
+  color: #e7d3b1;
+  letter-spacing: 0.04em;
+  font-size: 0.82rem;
+}
+
+.contact-form__hint {
+  margin: 0 0 0.65rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.contact-form__checkboxes {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.contact-form__checkboxes label {
+  margin: 0;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 0.8rem;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  background: rgba(10, 12, 16, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.contact-form__checkboxes input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+.price-estimate {
+  margin: 0 0 1.25rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(228, 165, 74, 0.35);
+  border-radius: 10px;
+  background: rgba(228, 165, 74, 0.09);
+  font-size: 0.9rem;
+  color: #f0e6d7;
+}
+
+.price-estimate strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #f3d6a1;
 }
 
 .form-note {

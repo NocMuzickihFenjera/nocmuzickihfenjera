@@ -31,8 +31,34 @@
   <main class="page-main">
     <section class="section section--contact section--page-top">
       <div class="section__container section__container--narrow">
-        <h1 class="section__title">Kontakt</h1>
-        <p class="section__intro">Pitanja o kartama, saradnji ili privatnim večerima — pišite nam.</p>
+        <h1 class="section__title">Karte i kontakt</h1>
+        <p class="section__intro">Rezervacije su trenutno putem upita. Izaberite koncerte i pošaljite zahtev, a mi vas kontaktiramo sa potvrdom.</p>
+        <div class="pricing-strip pricing-strip--contact">
+          <p class="pricing-strip__lead">Cene ulaznica i paketi</p>
+          <div class="pricing-strip__grid">
+            <article class="pricing-pill">
+              <h2>1200 RSD</h2>
+              <p>Mlađi od 26 i stariji od 65 godina (po koncertu)</p>
+            </article>
+            <article class="pricing-pill">
+              <h2>2000 RSD</h2>
+              <p>Standardna cena (po koncertu)</p>
+            </article>
+            <article class="pricing-pill">
+              <h2>6000 RSD</h2>
+              <p>Paket za bilo koja 4 koncerta (umesto 8000 RSD)</p>
+            </article>
+            <article class="pricing-pill">
+              <h2>12000 RSD</h2>
+              <p>Paket za svih 9 koncerata</p>
+            </article>
+            <article class="pricing-pill pricing-pill--accent">
+              <h2>5000 RSD</h2>
+              <p>Matthew paket: 30. maj + 31. maj + 4. jul</p>
+            </article>
+          </div>
+          <p class="pricing-strip__note">Napomena: paket popusti ne važe za mlađe od 26 i starije od 65 godina.</p>
+        </div>
         <form class="contact-form" action="https://formsubmit.co/info@nocmuzickihfenjera.com" method="POST">
           <input type="hidden" name="_subject" value="Upit sa sajta — Noć Muzičkih Fenjera" />
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
@@ -44,11 +70,43 @@
             Email
             <input type="email" name="email" autocomplete="email" required placeholder="vas@email.com" />
           </label>
+          <fieldset class="contact-form__fieldset">
+            <legend>Odaberi koncert(e)</legend>
+            <p class="contact-form__hint">Možete odabrati više koncerata.</p>
+            <div class="contact-form__checkboxes" id="concert-options">
+              <label><input type="checkbox" name="koncerti[]" value="30. maj 2026 — Matthew Mayer & Matej Jovanović" data-concert-id="matthew-30" data-price="2000" /> 30. maj — Matthew Mayer &amp; Matej Jovanović</label>
+              <label><input type="checkbox" name="koncerti[]" value="31. maj 2026 — Matthew Mayer & Matej Jovanović" data-concert-id="matthew-31" data-price="2000" /> 31. maj — Matthew Mayer &amp; Matej Jovanović</label>
+              <label><input type="checkbox" name="koncerti[]" value="05. jun 2026 — Svetska i domaća filmska muzika" data-concert-id="film-05" data-price="2000" /> 05. jun — Svetska i domaća filmska muzika</label>
+              <label><input type="checkbox" name="koncerti[]" value="12. jun 2026 — World & YU Rock Classics" data-concert-id="rock-12" data-price="2000" /> 12. jun — World &amp; YU Rock Classics</label>
+              <label><input type="checkbox" name="koncerti[]" value="17. jun 2026 — Muzički spektakl" data-concert-id="spektakl-17" data-price="2000" /> 17. jun — Muzički spektakl</label>
+              <label><input type="checkbox" name="koncerti[]" value="04. jul 2026 — Matthew Mayer Piano Solo" data-concert-id="matthew-04jul" data-price="2000" /> 04. jul — Matthew Mayer Piano Solo</label>
+              <label><input type="checkbox" name="koncerti[]" value="10. jul 2026 — Jazz veče" data-concert-id="jazz-10" data-price="2000" /> 10. jul — Jazz veče</label>
+              <label><input type="checkbox" name="koncerti[]" value="23. jul 2026 — Svetska i domaća filmska muzika" data-concert-id="film-23" data-price="2000" /> 23. jul — Svetska i domaća filmska muzika</label>
+              <label><input type="checkbox" name="koncerti[]" value="30. jul 2026 — YU Rock veče" data-concert-id="rock-30" data-price="2000" /> 30. jul — YU Rock veče</label>
+            </div>
+          </fieldset>
           <label>
-            Poruka
-            <textarea name="poruka" rows="5" required placeholder="Koji koncert ili kakva saradnja?"></textarea>
+            Koliko mesta
+            <input type="number" name="broj_mesta" min="1" step="1" required placeholder="Npr. 2" />
           </label>
-          <button class="btn btn--primary btn--wide" type="submit">Pošalji poruku</button>
+          <label>
+            Kategorija cene
+            <select name="kategorija_cene" id="age-category" required>
+              <option value="" selected disabled>Odaberite kategoriju</option>
+              <option value="discount">Imam manje od 26 ili više od 65 godina</option>
+              <option value="standard">Standardna cena</option>
+            </select>
+          </label>
+          <div class="price-estimate" id="price-estimate" aria-live="polite">
+            <strong>Procena cene:</strong>
+            <span id="price-estimate-value">Odaberite koncert(e), broj mesta i kategoriju.</span>
+          </div>
+          <label>
+            Poruka / dodatne napomene
+            <textarea name="poruka" rows="5" required placeholder="Dodatna pitanja ili posebni zahtevi"></textarea>
+          </label>
+          <p class="form-note">Rezervišite karte putem upita. Bićete kontaktirani, a karte ćete moći da platite i preuzmete na blagajni Konaka Kneginje Ljubice početkom maja.</p>
+          <button class="btn btn--primary btn--wide" type="submit">Pošalji upit za rezervaciju</button>
         </form>
         <div class="contact-alt">
           <p><strong>Email:</strong> <a href="mailto:info@nocmuzickihfenjera.com">info@nocmuzickihfenjera.com</a></p>
