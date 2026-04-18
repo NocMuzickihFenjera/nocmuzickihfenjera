@@ -48,6 +48,27 @@
     });
   }
 
+  function calculateBasePackagePrice(standardTickets) {
+    if (!standardTickets) return 0;
+    var dp = new Array(standardTickets + 1).fill(Infinity);
+    dp[0] = 0;
+
+    for (var count = 1; count <= standardTickets; count += 1) {
+      dp[count] = Math.min(
+        dp[count],
+        dp[count - 1] + 2000
+      );
+      if (count >= 4) {
+        dp[count] = Math.min(dp[count], dp[count - 4] + 6000);
+      }
+      if (count >= 9) {
+        dp[count] = Math.min(dp[count], dp[count - 9] + 12000);
+      }
+    }
+
+    return dp[standardTickets];
+  }
+
   function calculateStandardPriceByTickets(standardTickets, selectedIds) {
     if (!standardTickets) return { total: 0, note: "" };
 
@@ -55,33 +76,18 @@
       && selectedIds.indexOf("matthew-31") !== -1
       && selectedIds.indexOf("matthew-04jul") !== -1;
 
-    var offers = [
-      { size: 1, price: 2000, label: "Standard karta" },
-      { size: 4, price: 6000, label: "Paket 4 karte" },
-      { size: 9, price: 12000, label: "Paket 9 karata" }
-    ];
-
-    if (hasMatthewCombo) {
-      offers.push({ size: 3, price: 5000, label: "Matthew paket" });
+    var baseTotal = calculateBasePackagePrice(standardTickets);
+    if (!hasMatthewCombo || standardTickets < 3) {
+      return { total: baseTotal, note: "" };
     }
 
-    var dp = new Array(standardTickets + 1).fill(Infinity);
-    var notes = new Array(standardTickets + 1).fill("");
-    dp[0] = 0;
-
-    for (var ticketCount = 0; ticketCount <= standardTickets; ticketCount += 1) {
-      if (!isFinite(dp[ticketCount])) continue;
-      offers.forEach(function (offer) {
-        var next = ticketCount + offer.size;
-        if (next > standardTickets) return;
-        if (dp[next] > dp[ticketCount] + offer.price) {
-          dp[next] = dp[ticketCount] + offer.price;
-          notes[next] = offer.label;
-        }
-      });
+    // Matthew Mayer paket se primenjuje najviše jednom.
+    var withMatthew = 5000 + calculateBasePackagePrice(standardTickets - 3);
+    if (withMatthew < baseTotal) {
+      return { total: withMatthew, note: "Primenjen Matthew Mayer paket (1x)." };
     }
 
-    return { total: dp[standardTickets], note: notes[standardTickets] };
+    return { total: baseTotal, note: "" };
   }
 
   function updatePriceEstimate() {
@@ -97,19 +103,22 @@
       return;
     }
 
-    var standardPrice = calculateStandardPriceByTickets(Math.max(0, standardSeats), selectedIds);
-    var discountPrice = Math.max(0, discountSeats) * 1200;
+    var concertCount = selectedIds.length;
+    var standardTickets = Math.max(0, standardSeats) * concertCount;
+    var discountTickets = Math.max(0, discountSeats) * concertCount;
+    var standardPrice = calculateStandardPriceByTickets(standardTickets, selectedIds);
+    var discountPrice = discountTickets * 1200;
     var total = standardPrice.total + discountPrice;
     var parts = [];
 
     if (standardSeats > 0) {
-      parts.push("standard " + standardSeats + " = " + formatRsd(standardPrice.total));
+      parts.push("standard " + standardSeats + " x " + concertCount + " datuma = " + formatRsd(standardPrice.total));
     }
     if (discountSeats > 0) {
-      parts.push("povlašćene " + discountSeats + " = " + formatRsd(discountPrice));
+      parts.push("povlašćene " + discountSeats + " x " + concertCount + " datuma = " + formatRsd(discountPrice));
     }
 
-    var note = standardPrice.note ? " Primenjen paket: " + standardPrice.note + "." : "";
+    var note = standardPrice.note ? " " + standardPrice.note : "";
     priceValueEl.textContent = "Ukupno: " + formatRsd(total) + " (" + parts.join(", ") + ")." + note;
   }
 
