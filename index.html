@@ -10,16 +10,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-06BH31TTPN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", "G-06BH31TTPN");
+  </script>
 </head>
 <body class="page page--splash" data-title-sr="Noć Muzičkih Fenjera" data-title-en="Night of Musical Lanterns">
   <div class="lantern-field" aria-hidden="true"></div>
 
   <header class="site-header">
-    <a class="logo" href="index.html">Noć Muzičkih Fenjera</a>
-    <button class="nav-toggle" type="button" aria-label="Meni" aria-expanded="false">
+    <a class="logo" href="index.html" data-i18n-sr="Noć Muzičkih Fenjera" data-i18n-en="Night of Musical Lanterns">Noć Muzičkih Fenjera</a>
+    <button class="nav-toggle" type="button" aria-label="Meni" data-i18n-aria-label-sr="Meni" data-i18n-aria-label-en="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-    <nav class="site-nav" aria-label="Glavna navigacija">
+    <nav class="site-nav" aria-label="Glavna navigacija" data-i18n-aria-label-sr="Glavna navigacija" data-i18n-aria-label-en="Main navigation">
       <a href="index.html" aria-current="page" data-i18n-sr="Početak" data-i18n-en="Home">Početak</a>
       <a href="prica.html" data-i18n-sr="Priča" data-i18n-en="Story">Priča</a>
       <a href="programi.html" data-i18n-sr="Programi" data-i18n-en="Program">Programi</a>
@@ -94,7 +102,7 @@
         <div class="splash__dive">
           <a class="btn btn--primary" href="programi.html" data-i18n-sr="Karte" data-i18n-en="Tickets">Karte</a>
         </div>
-        <nav class="splash__quick" aria-label="Brzi linkovi">
+        <nav class="splash__quick" aria-label="Brzi linkovi" data-i18n-aria-label-sr="Brzi linkovi" data-i18n-aria-label-en="Quick links">
           <a href="prica.html" data-i18n-sr="Priča" data-i18n-en="Story">Priča</a>
           <span class="splash__dot" aria-hidden="true">·</span>
           <a href="umetnici.html" data-i18n-sr="Umetnici" data-i18n-en="Artists">Umetnici</a>
@@ -108,6 +116,8 @@
           width="1200"
           height="1697"
           alt="Plakat: Matthew Mayer i Matej Jovanović — spektakl"
+          data-i18n-alt-sr="Plakat: Matthew Mayer i Matej Jovanović — spektakl"
+          data-i18n-alt-en="Poster: Matthew Mayer and Matej Jovanovic — spectacle"
           loading="lazy"
           decoding="async"
         />
@@ -117,7 +127,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>© <span id="year"></span> Noć Muzičkih Fenjera · veče pod fenjerima</p>
+    <p data-i18n-html-sr="© <span id='year'></span> Noć Muzičkih Fenjera · veče pod fenjerima" data-i18n-html-en="© <span id='year'></span> Night of Musical Lanterns · an evening under lanterns">© <span id="year"></span> Noć Muzičkih Fenjera · veče pod fenjerima</p>
   </footer>
 
   <script src="js/main.js"></script>
