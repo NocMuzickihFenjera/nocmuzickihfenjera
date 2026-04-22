@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body class="page">
+<body class="page" data-title-sr="Karte i kontakt — Noć Muzičkih Fenjera" data-title-en="Tickets & Contact — Night of Musical Lanterns">
   <div class="lantern-field" aria-hidden="true"></div>
 
   <header class="site-header">
@@ -20,19 +20,23 @@
       <span></span><span></span><span></span>
     </button>
     <nav class="site-nav" aria-label="Glavna navigacija">
-      <a href="index.html">Početak</a>
-      <a href="prica.html">Priča</a>
-      <a href="programi.html">Programi</a>
-      <a href="umetnici.html">Umetnici</a>
-      <a href="kontakt.html" aria-current="page">Kontakt</a>
+      <a href="index.html" data-i18n-sr="Početak" data-i18n-en="Home">Početak</a>
+      <a href="prica.html" data-i18n-sr="Priča" data-i18n-en="Story">Priča</a>
+      <a href="programi.html" data-i18n-sr="Programi" data-i18n-en="Program">Programi</a>
+      <a href="umetnici.html" data-i18n-sr="Umetnici" data-i18n-en="Artists">Umetnici</a>
+      <a href="kontakt.html" aria-current="page" data-i18n-sr="Karte i kontakt" data-i18n-en="Tickets & Contact">Karte i kontakt</a>
+      <div class="lang-switch" aria-label="Language switcher">
+        <button class="lang-switch__btn is-active" type="button" data-lang-switch="sr" aria-pressed="true">SR</button>
+        <button class="lang-switch__btn" type="button" data-lang-switch="en" aria-pressed="false">EN</button>
+      </div>
     </nav>
   </header>
 
   <main class="page-main">
     <section class="section section--contact section--page-top">
       <div class="section__container">
-        <h1 class="section__title">Karte i kontakt</h1>
-        <p class="section__intro">Rezervacije su trenutno putem upita.</p>
+        <h1 class="section__title" data-i18n-sr="Karte i kontakt" data-i18n-en="Tickets & Contact">Karte i kontakt</h1>
+        <p class="section__intro" data-i18n-sr="Rezervacije su trenutno putem upita." data-i18n-en="Reservations are currently handled via inquiry.">Rezervacije su trenutno putem upita.</p>
         <div class="pricing-strip pricing-strip--contact">
           <p class="pricing-strip__lead">Istaknute cene i način rezervacije</p>
           <div class="pricing-strip__grid">
@@ -61,8 +65,8 @@
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_autoresponse" value="Hvala na upitu za rezervaciju za Noć Muzičkih Fenjera. Primili smo podatke koje ste poslali i uskoro ćemo vas kontaktirati sa potvrdom rezervacije i detaljima. Bićete obavešteni kada karte mogu da se plate i preuzmu na blagajni Konaka Kneginje Ljubice." />
           <label>
-            Ime
-            <input type="text" name="ime" autocomplete="name" required placeholder="Vaše ime" />
+            <span data-i18n-sr="Ime" data-i18n-en="Name">Ime</span>
+            <input type="text" name="ime" autocomplete="name" required placeholder="Vaše ime" data-i18n-placeholder-sr="Vaše ime" data-i18n-placeholder-en="Your name" />
           </label>
           <label>
             Email
@@ -96,11 +100,11 @@
             <span id="price-estimate-value">Odaberite koncert(e) i unesite broj karata po kategoriji.</span>
           </div>
           <label>
-            Poruka / dodatne napomene
-            <textarea name="poruka" rows="5" placeholder="Dodatna pitanja ili posebni zahtevi"></textarea>
+            <span data-i18n-sr="Poruka / dodatne napomene" data-i18n-en="Message / additional notes">Poruka / dodatne napomene</span>
+            <textarea name="poruka" rows="5" placeholder="Dodatna pitanja ili posebni zahtevi" data-i18n-placeholder-sr="Dodatna pitanja ili posebni zahtevi" data-i18n-placeholder-en="Additional questions or special requests"></textarea>
           </label>
           <p class="form-note">Rezervišite karte putem upita. Bićete kontaktirani, a karte ćete moći da platite i preuzmete na blagajni Konaka Kneginje Ljubice početkom maja.</p>
-          <button class="btn btn--primary btn--wide" type="submit">Pošalji upit za rezervaciju</button>
+          <button class="btn btn--primary btn--wide" type="submit" data-i18n-sr="Pošalji upit za rezervaciju" data-i18n-en="Send reservation inquiry">Pošalji upit za rezervaciju</button>
         </form>
         <div class="contact-alt">
           <p><strong>Email:</strong> <a href="mailto:info@nocmuzickihfenjera.com">info@nocmuzickihfenjera.com</a></p>

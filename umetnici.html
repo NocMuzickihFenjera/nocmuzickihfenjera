@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body class="page">
+<body class="page" data-title-sr="Umetnici — Noć Muzičkih Fenjera" data-title-en="Artists — Night of Musical Lanterns">
   <div class="lantern-field" aria-hidden="true"></div>
 
   <header class="site-header">
@@ -20,19 +20,23 @@
       <span></span><span></span><span></span>
     </button>
     <nav class="site-nav" aria-label="Glavna navigacija">
-      <a href="index.html">Početak</a>
-      <a href="prica.html">Priča</a>
-      <a href="programi.html">Programi</a>
-      <a href="umetnici.html" aria-current="page">Umetnici</a>
-      <a href="kontakt.html">Kontakt</a>
+      <a href="index.html" data-i18n-sr="Početak" data-i18n-en="Home">Početak</a>
+      <a href="prica.html" data-i18n-sr="Priča" data-i18n-en="Story">Priča</a>
+      <a href="programi.html" data-i18n-sr="Programi" data-i18n-en="Program">Programi</a>
+      <a href="umetnici.html" aria-current="page" data-i18n-sr="Umetnici" data-i18n-en="Artists">Umetnici</a>
+      <a href="kontakt.html" data-i18n-sr="Karte i kontakt" data-i18n-en="Tickets & Contact">Karte i kontakt</a>
+      <div class="lang-switch" aria-label="Language switcher">
+        <button class="lang-switch__btn is-active" type="button" data-lang-switch="sr" aria-pressed="true">SR</button>
+        <button class="lang-switch__btn" type="button" data-lang-switch="en" aria-pressed="false">EN</button>
+      </div>
     </nav>
   </header>
 
   <main class="page-main">
     <section class="section section--page-top section--artists-page">
       <div class="section__container section__container--wide">
-        <h1 class="section__title">Umetnici</h1>
-        <p class="section__intro">Zvuk večeri u više priča — domaći virtuoz, džez sastav i američka solo pijanistička ikona.</p>
+        <h1 class="section__title" data-i18n-sr="Umetnici" data-i18n-en="Artists">Umetnici</h1>
+        <p class="section__intro" data-i18n-sr="Zvuk večeri u više priča — domaći virtuoz, džez sastav i američka solo pijanistička ikona." data-i18n-en="The sound of the evening through many stories — a local virtuoso, a jazz ensemble, and an American solo piano icon.">Zvuk večeri u više priča — domaći virtuoz, džez sastav i američka solo pijanistička ikona.</p>
 
         <article class="artist-profile artist-profile--matej" id="matej-jovanovic">
           <div class="artist-profile__intro-row">

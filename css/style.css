@@ -92,6 +92,36 @@ a:hover {
   gap: 1.75rem;
 }
 
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: 1rem;
+}
+
+.lang-switch__btn {
+  border: 1px solid var(--line);
+  background: rgba(10, 12, 16, 0.7);
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.45rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.lang-switch__btn:hover {
+  color: var(--text);
+  border-color: rgba(228, 165, 74, 0.35);
+}
+
+.lang-switch__btn.is-active {
+  color: #1a1208;
+  border-color: rgba(255, 220, 160, 0.35);
+  background: linear-gradient(145deg, #d4923a, #b87428);
+}
+
 .site-nav a {
   font-size: 0.9rem;
   font-weight: 500;
@@ -188,6 +218,11 @@ a:hover {
     z-index: 101;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+  }
+
+  .lang-switch {
+    margin-left: 0;
+    margin-top: 1.25rem;
   }
 
   .site-header.is-open .site-nav {

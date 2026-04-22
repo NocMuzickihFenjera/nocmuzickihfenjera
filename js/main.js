@@ -3,10 +3,83 @@
   var toggle = document.querySelector(".nav-toggle");
   var navLinks = document.querySelectorAll(".site-nav a");
   var yearEl = document.getElementById("year");
+  var LANG_KEY = "nmf-language";
+
+  function applyLanguage(lang) {
+    var safeLang = lang === "en" ? "en" : "sr";
+    document.documentElement.lang = safeLang;
+
+    var translatable = document.querySelectorAll("[data-i18n-sr][data-i18n-en]");
+    translatable.forEach(function (el) {
+      var nextText = safeLang === "en" ? el.getAttribute("data-i18n-en") : el.getAttribute("data-i18n-sr");
+      if (nextText !== null) {
+        el.textContent = nextText;
+      }
+    });
+
+    var placeholders = document.querySelectorAll("[data-i18n-placeholder-sr][data-i18n-placeholder-en]");
+    placeholders.forEach(function (el) {
+      var nextPlaceholder = safeLang === "en" ? el.getAttribute("data-i18n-placeholder-en") : el.getAttribute("data-i18n-placeholder-sr");
+      if (nextPlaceholder !== null) {
+        el.setAttribute("placeholder", nextPlaceholder);
+      }
+    });
+
+    var titles = document.querySelectorAll("[data-i18n-title-sr][data-i18n-title-en]");
+    titles.forEach(function (el) {
+      var nextTitle = safeLang === "en" ? el.getAttribute("data-i18n-title-en") : el.getAttribute("data-i18n-title-sr");
+      if (nextTitle !== null) {
+        el.setAttribute("title", nextTitle);
+      }
+    });
+
+    var metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      var srDescription = metaDescription.getAttribute("data-i18n-sr");
+      var enDescription = metaDescription.getAttribute("data-i18n-en");
+      if (srDescription && enDescription) {
+        metaDescription.setAttribute("content", safeLang === "en" ? enDescription : srDescription);
+      }
+    }
+
+    var srTitle = document.body.getAttribute("data-title-sr");
+    var enTitle = document.body.getAttribute("data-title-en");
+    if (srTitle && enTitle) {
+      document.title = safeLang === "en" ? enTitle : srTitle;
+    }
+
+    var switchers = document.querySelectorAll("[data-lang-switch]");
+    switchers.forEach(function (btn) {
+      var isActive = btn.getAttribute("data-lang-switch") === safeLang;
+      btn.classList.toggle("is-active", isActive);
+      btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+
+    updatePriceEstimate();
+  }
+
+  function initLanguageSwitcher() {
+    var switchers = document.querySelectorAll("[data-lang-switch]");
+    if (!switchers.length) return;
+
+    var storedLang = localStorage.getItem(LANG_KEY);
+    var preferredLang = storedLang === "en" ? "en" : "sr";
+    applyLanguage(preferredLang);
+
+    switchers.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var selectedLang = btn.getAttribute("data-lang-switch") === "en" ? "en" : "sr";
+        localStorage.setItem(LANG_KEY, selectedLang);
+        applyLanguage(selectedLang);
+      });
+    });
+  }
 
   if (yearEl) {
     yearEl.textContent = String(new Date().getFullYear());
   }
+
+  initLanguageSwitcher();
 
   function closeMenu() {
     if (!header || !toggle) return;
@@ -37,7 +110,8 @@
   var priceValueEl = document.getElementById("price-estimate-value");
 
   function formatRsd(value) {
-    return value.toLocaleString("sr-RS") + " RSD";
+    var locale = document.documentElement.lang === "en" ? "en-US" : "sr-RS";
+    return value.toLocaleString(locale) + " RSD";
   }
 
   function getSelectedConcertIds() {
@@ -84,7 +158,10 @@
     // Matthew Mayer paket se primenjuje najviše jednom.
     var withMatthew = 5000 + calculateBasePackagePrice(standardTickets - 3);
     if (withMatthew < baseTotal) {
-      return { total: withMatthew, note: "Primenjen Matthew Mayer paket (1x)." };
+      var appliedNote = document.documentElement.lang === "en"
+        ? "Matthew Mayer package applied (1x)."
+        : "Primenjen Matthew Mayer paket (1x).";
+      return { total: withMatthew, note: appliedNote };
     }
 
     return { total: baseTotal, note: "" };
@@ -92,6 +169,10 @@
 
   function updatePriceEstimate() {
     if (!contactForm || !priceValueEl) return;
+    var isEnglish = document.documentElement.lang === "en";
+    var emptyText = isEnglish
+      ? "Choose concert(s) and enter ticket quantities by category."
+      : "Odaberite koncert(e) i unesite broj karata po kategoriji.";
 
     var selectedIds = getSelectedConcertIds();
     var standardSeats = parseInt(standardSeatsInput && standardSeatsInput.value ? standardSeatsInput.value : "0", 10);
@@ -99,7 +180,7 @@
     var totalSeats = Math.max(0, standardSeats) + Math.max(0, discountSeats);
 
     if (!selectedIds.length || !totalSeats) {
-      priceValueEl.textContent = "Odaberite koncert(e) i unesite broj karata po kategoriji.";
+      priceValueEl.textContent = emptyText;
       return;
     }
 
@@ -112,14 +193,14 @@
     var parts = [];
 
     if (standardSeats > 0) {
-      parts.push("standard " + standardSeats + " x " + concertCount + " datuma = " + formatRsd(standardPrice.total));
+      parts.push((isEnglish ? "standard " : "standard ") + standardSeats + " x " + concertCount + (isEnglish ? " dates = " : " datuma = ") + formatRsd(standardPrice.total));
     }
     if (discountSeats > 0) {
-      parts.push("povlašćene " + discountSeats + " x " + concertCount + " datuma = " + formatRsd(discountPrice));
+      parts.push((isEnglish ? "discounted " : "povlašćene ") + discountSeats + " x " + concertCount + (isEnglish ? " dates = " : " datuma = ") + formatRsd(discountPrice));
     }
 
     var note = standardPrice.note ? " " + standardPrice.note : "";
-    priceValueEl.textContent = "Ukupno: " + formatRsd(total) + " (" + parts.join(", ") + ")." + note;
+    priceValueEl.textContent = (isEnglish ? "Total: " : "Ukupno: ") + formatRsd(total) + " (" + parts.join(", ") + ")." + note;
   }
 
   function attachZeroClearBehavior(inputEl) {
