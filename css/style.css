@@ -647,6 +647,13 @@ main {
   text-transform: uppercase;
 }
 
+.concert-card__capacity {
+  margin: 0.4rem 0 0;
+  color: #f3d6a1;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
 .concert-card__tag {
   display: inline-block;
   margin-top: 0.75rem;
@@ -837,6 +844,13 @@ main {
   display: flex;
   align-items: center;
   gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.concert-capacity {
+  color: #f3d6a1;
+  font-size: 0.76rem;
+  font-weight: 600;
 }
 
 .contact-form__checkboxes input[type="checkbox"] {
