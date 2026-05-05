@@ -767,6 +767,26 @@ main {
   padding-bottom: 6rem;
 }
 
+.contact-tickets-cta {
+  margin: 0 auto 2.5rem;
+  max-width: 22rem;
+  text-align: center;
+}
+
+.contact-tickets-cta__btn {
+  text-decoration: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+
+.contact-tickets-cta__hint {
+  margin: 0.85rem 0 0;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
 .contact-form label {
   display: block;
   margin-bottom: 1.25rem;
