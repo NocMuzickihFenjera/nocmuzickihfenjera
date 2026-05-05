@@ -44,9 +44,13 @@
     <section class="section section--contact section--page-top">
       <div class="section__container">
         <h1 class="section__title" data-i18n-sr="Karte i kontakt" data-i18n-en="Tickets & Contact">Karte i kontakt</h1>
-        <p class="section__intro" data-i18n-sr="Rezervacije su trenutno putem upita." data-i18n-en="Reservations are currently handled via inquiry.">Rezervacije su trenutno putem upita.</p>
+        <p class="section__intro" data-i18n-sr="Za karte koristite zvaničnu prodaju. Za pitanja i saradnju pišite nam putem forme ispod." data-i18n-en="Use official ticket sales for tickets. For questions and partnerships, write to us using the form below.">Za karte koristite zvaničnu prodaju. Za pitanja i saradnju pišite nam putem forme ispod.</p>
+        <div class="contact-tickets-cta">
+          <a class="btn btn--primary btn--wide contact-tickets-cta__btn" href="https://tickets.rs/venue/konak_kneginje_ljubice_78?CurrentPage=2#fpoint" target="_blank" rel="noopener noreferrer" data-i18n-sr="Kupi karte" data-i18n-en="Buy tickets">Kupi karte</a>
+          <p class="contact-tickets-cta__hint" data-i18n-sr="Konak kneginje Ljubice na tickets.rs" data-i18n-en="Konak of Princess Ljubica on tickets.rs">Konak kneginje Ljubice na tickets.rs</p>
+        </div>
         <div class="pricing-strip pricing-strip--contact">
-          <p class="pricing-strip__lead" data-i18n-sr="Istaknute cene i način rezervacije" data-i18n-en="Highlighted prices and reservation method">Istaknute cene i način rezervacije</p>
+          <p class="pricing-strip__lead" data-i18n-sr="Istaknute cene" data-i18n-en="Highlighted prices">Istaknute cene</p>
           <div class="pricing-strip__grid">
             <article class="pricing-pill">
               <h2 data-i18n-sr="Po koncertu" data-i18n-en="Per concert">Po koncertu</h2>
@@ -58,12 +62,12 @@
               <p data-i18n-html-sr="Bilo koje 4 karte,<br>standardna paket cena." data-i18n-html-en="Any 4 tickets,<br>standard package price.">Bilo koje 4 karte,<br>standardna paket cena.</p>
             </article>
           </div>
-          <p class="pricing-strip__note" data-i18n-sr="Rezervacije su trenutno putem upita. Rezervisane karte ćete moći da platite i preuzmete na blagajni Konaka Kneginje Ljubice i bićete obavešteni." data-i18n-en="Reservations are currently handled via inquiry. Reserved tickets can be paid for and collected at the Konak of Princess Ljubica box office; you will be notified.">Rezervacije su trenutno putem upita. Rezervisane karte ćete moći da platite i preuzmete na blagajni Konaka Kneginje Ljubice i bićete obavešteni.</p>
+          <p class="pricing-strip__note" data-i18n-sr="Cene i dostupnost po događaju na prodajnom mestu. Karte možete kupiti putem dugmeta iznad." data-i18n-en="Prices and availability are listed per event at the point of sale. You can buy tickets using the button above.">Cene i dostupnost po događaju na prodajnom mestu. Karte možete kupiti putem dugmeta iznad.</p>
         </div>
         <form class="contact-form" action="https://formsubmit.co/info@nocmuzickihfenjera.com" method="POST">
-          <input type="hidden" name="_subject" value="Upit sa sajta — Noć Muzičkih Fenjera" />
+          <input type="hidden" name="_subject" value="Poruka sa sajta — Noć Muzičkih Fenjera" />
           <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_autoresponse" value="Hvala na upitu za rezervaciju za Noć Muzičkih Fenjera. Primili smo podatke koje ste poslali i uskoro ćemo vas kontaktirati sa potvrdom rezervacije i detaljima. Bićete obavešteni kada karte mogu da se plate i preuzmu na blagajni Konaka Kneginje Ljubice." />
+          <input type="hidden" name="_autoresponse" value="Hvala što ste nas kontaktirali. Primili smo vašu poruku i odgovorićemo u najkraćem mogućem roku. Srdačan pozdrav, tim Noći Muzičkih Fenjera." />
           <label>
             <span data-i18n-sr="Ime" data-i18n-en="Name">Ime</span>
             <input type="text" name="ime" autocomplete="name" required placeholder="Vaše ime" data-i18n-placeholder-sr="Vaše ime" data-i18n-placeholder-en="Your name" />
@@ -76,6 +80,15 @@
             <span data-i18n-sr="Telefon" data-i18n-en="Phone">Telefon</span>
             <input type="tel" name="telefon" autocomplete="tel" placeholder="+381 6X XXX XXXX" data-i18n-placeholder-sr="+381 6X XXX XXXX" data-i18n-placeholder-en="+381 6X XXX XXXX" />
           </label>
+          <label>
+            <span data-i18n-sr="Poruka" data-i18n-en="Message">Poruka</span>
+            <textarea name="poruka" rows="5" required placeholder="Vaša poruka" data-i18n-placeholder-sr="Vaša poruka" data-i18n-placeholder-en="Your message"></textarea>
+          </label>
+          <p class="form-note" data-i18n-sr="Odgovaramo u najkraćem roku. Za kupovinu karata koristite prodaju putem tickets.rs." data-i18n-en="We reply as soon as we can. For ticket purchases, use tickets.rs.">Odgovaramo u najkraćem roku. Za kupovinu karata koristite prodaju putem tickets.rs.</p>
+          <button class="btn btn--primary btn--wide" type="submit" data-i18n-sr="Pošalji poruku" data-i18n-en="Send message">Pošalji poruku</button>
+        </form>
+
+        <template id="contact-form-reservation-legacy">
           <fieldset class="contact-form__fieldset">
             <legend data-i18n-sr="Odaberi koncert(e)" data-i18n-en="Choose concert(s)">Odaberi koncert(e)</legend>
             <p class="contact-form__hint" data-i18n-sr="Možete odabrati više koncerata." data-i18n-en="You can select multiple concerts.">Možete odabrati više koncerata.</p>
@@ -103,13 +116,8 @@
             <strong data-i18n-sr="Procena cene:" data-i18n-en="Estimated price:">Procena cene:</strong>
             <span id="price-estimate-value">Odaberite koncert(e) i unesite broj karata po kategoriji.</span>
           </div>
-          <label>
-            <span data-i18n-sr="Poruka / dodatne napomene" data-i18n-en="Message / additional notes">Poruka / dodatne napomene</span>
-            <textarea name="poruka" rows="5" placeholder="Dodatna pitanja ili posebni zahtevi" data-i18n-placeholder-sr="Dodatna pitanja ili posebni zahtevi" data-i18n-placeholder-en="Additional questions or special requests"></textarea>
-          </label>
           <p class="form-note" data-i18n-sr="Rezervišite karte putem upita. Bićete kontaktirani, a karte ćete moći da platite i preuzmete na blagajni Konaka Kneginje Ljubice početkom maja." data-i18n-en="Reserve your tickets via inquiry. We will contact you, and tickets can be paid for and collected at the Konak of Princess Ljubica box office in early May.">Rezervišite karte putem upita. Bićete kontaktirani, a karte ćete moći da platite i preuzmete na blagajni Konaka Kneginje Ljubice početkom maja.</p>
-          <button class="btn btn--primary btn--wide" type="submit" data-i18n-sr="Pošalji upit za rezervaciju" data-i18n-en="Send reservation inquiry">Pošalji upit za rezervaciju</button>
-        </form>
+        </template>
         <div class="contact-alt">
           <p><strong>Email:</strong> <a href="mailto:info@nocmuzickihfenjera.com">info@nocmuzickihfenjera.com</a></p>
           <p><strong>Instagram:</strong> <a href="https://www.instagram.com/nocmuzickihfenjera/" rel="noopener noreferrer">@nocmuzickihfenjera</a></p>
