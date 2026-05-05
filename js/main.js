@@ -159,36 +159,14 @@
       if (count >= 4) {
         dp[count] = Math.min(dp[count], dp[count - 4] + 6000);
       }
-      if (count >= 9) {
-        dp[count] = Math.min(dp[count], dp[count - 9] + 12000);
-      }
     }
 
     return dp[standardTickets];
   }
 
-  function calculateStandardPriceByTickets(standardTickets, selectedIds) {
+  function calculateStandardPriceByTickets(standardTickets) {
     if (!standardTickets) return { total: 0, note: "" };
-
-    var hasMatthewCombo = selectedIds.indexOf("matthew-30") !== -1
-      && selectedIds.indexOf("matthew-31") !== -1
-      && selectedIds.indexOf("matthew-04jul") !== -1;
-
-    var baseTotal = calculateBasePackagePrice(standardTickets);
-    if (!hasMatthewCombo || standardTickets < 3) {
-      return { total: baseTotal, note: "" };
-    }
-
-    // Matthew Mayer paket se primenjuje najviše jednom.
-    var withMatthew = 5000 + calculateBasePackagePrice(standardTickets - 3);
-    if (withMatthew < baseTotal) {
-      var appliedNote = document.documentElement.lang === "en"
-        ? "Matthew Mayer package applied (1x)."
-        : "Primenjen Matthew Mayer paket (1x).";
-      return { total: withMatthew, note: appliedNote };
-    }
-
-    return { total: baseTotal, note: "" };
+    return { total: calculateBasePackagePrice(standardTickets), note: "" };
   }
 
   function updatePriceEstimate() {
@@ -211,7 +189,7 @@
     var concertCount = selectedIds.length;
     var standardTickets = Math.max(0, standardSeats) * concertCount;
     var discountTickets = Math.max(0, discountSeats) * concertCount;
-    var standardPrice = calculateStandardPriceByTickets(standardTickets, selectedIds);
+    var standardPrice = calculateStandardPriceByTickets(standardTickets);
     var discountPrice = discountTickets * 1200;
     var total = standardPrice.total + discountPrice;
     var parts = [];
