@@ -158,7 +158,7 @@
   }
 
   function getConcertRows() {
-    return contactForm ? contactForm.querySelectorAll(".concert-booking") : [];
+    return contactForm ? contactForm.querySelectorAll(".concert-row") : [];
   }
 
   function collectBookings() {
@@ -171,7 +171,7 @@
       var discount = Math.max(0, parseInt(discountInput && discountInput.value ? discountInput.value : "0", 10) || 0);
       if (!checkbox || (!checkbox.checked && !standard && !discount)) return;
 
-      var titleEl = row.querySelector(".concert-booking__title");
+      var titleEl = row.querySelector(".concert-row__title");
       bookings.push({
         title: titleEl ? titleEl.textContent.trim() : checkbox.value,
         standard: standard,
@@ -191,13 +191,6 @@
 
     checkbox.checked = active;
     row.classList.toggle("is-active", active);
-    standardInput.disabled = !active;
-    discountInput.disabled = !active;
-
-    if (!active) {
-      standardInput.value = "0";
-      discountInput.value = "0";
-    }
   }
 
   function updatePriceEstimate() {
@@ -267,7 +260,7 @@
     });
     inputEl.addEventListener("blur", function () {
       if (inputEl.value === "") inputEl.value = "0";
-      var row = inputEl.closest(".concert-booking");
+      var row = inputEl.closest(".concert-row");
       if (row) syncConcertRow(row);
       updatePriceEstimate();
     });
@@ -304,6 +297,10 @@
       var discountInput = row.querySelector(".ticket-input--discount");
 
       checkbox.addEventListener("change", function () {
+        if (!checkbox.checked) {
+          standardInput.value = "0";
+          discountInput.value = "0";
+        }
         syncConcertRow(row);
         updatePriceEstimate();
       });
