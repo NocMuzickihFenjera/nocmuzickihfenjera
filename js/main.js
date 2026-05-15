@@ -321,24 +321,92 @@
     });
 
     var submitBtn = contactForm.querySelector('button[type="submit"]');
+    var FORM_ENDPOINT = "https://api.web3forms.com/submit";
+
+    function buildMessageBody() {
+      var ime = (contactForm.querySelector('[name="ime"]') || {}).value || "";
+      var email = (contactForm.querySelector('[name="email"]') || {}).value || "";
+      var telefon = (contactForm.querySelector('[name="telefon"]') || {}).value || "";
+      var napomena = (contactForm.querySelector('[name="poruka"]') || {}).value || "";
+      var summary = buildOrderSummary();
+
+      return [
+        summary,
+        "",
+        "Ime: " + (ime || "—"),
+        "Email: " + (email || "—"),
+        "Telefon: " + (telefon || "—"),
+        "Napomena: " + (napomena || "—")
+      ].join("\n");
+    }
 
     contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
       if (orderSummaryEl) orderSummaryEl.value = buildOrderSummary();
 
       var hp = contactForm.querySelector('[name="hp_email"]');
       if (hp && hp.value) {
-        event.preventDefault();
         return;
       }
+
+      var isEnglish = document.documentElement.lang === "en";
+      var sendingText = isEnglish ? "Sending…" : "Šaljem…";
+      var errorText =
+        isEnglish
+          ? "Sending failed. Please try again or email info@nocmuzickihfenjera.com directly."
+          : "Slanje nije uspelo. Pokušajte ponovo ili pišite direktno na info@nocmuzickihfenjera.com.";
 
       if (submitBtn) {
         submitBtn.disabled = true;
         if (!submitBtn.dataset.defaultLabel) {
           submitBtn.dataset.defaultLabel = submitBtn.textContent;
         }
-        submitBtn.textContent =
-          document.documentElement.lang === "en" ? "Sending…" : "Šaljem…";
+        submitBtn.textContent = sendingText;
       }
+
+      var ime = (contactForm.querySelector('[name="ime"]') || {}).value || "";
+      var email = (contactForm.querySelector('[name="email"]') || {}).value || "";
+
+      fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          access_key: "8c6efcfa-d049-4ebc-b740-8c3addae5283",
+          subject: "Rezervacija karata — Noć Muzičkih Fenjera",
+          from_name: "Noć Muzičkih Fenjera — rezervacija",
+          name: ime,
+          email: email,
+          replyto: email,
+          telefon: (contactForm.querySelector('[name="telefon"]') || {}).value || "",
+          procena_cene: priceHiddenEl ? priceHiddenEl.value : "",
+          rezervacija_detalji: buildOrderSummary(),
+          message: buildMessageBody(),
+          botcheck: false
+        })
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          if (data && data.success === true) {
+            window.location.href = "kontakt.html?poslato=1";
+            return;
+          }
+          throw new Error((data && data.message) || "send_failed");
+        })
+        .catch(function () {
+          alert(errorText);
+        })
+        .finally(function () {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent =
+              submitBtn.dataset.defaultLabel || submitBtn.textContent;
+          }
+        });
     });
 
     updatePriceEstimate();
