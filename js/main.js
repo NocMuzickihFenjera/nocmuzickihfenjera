@@ -321,53 +321,24 @@
     });
 
     var submitBtn = contactForm.querySelector('button[type="submit"]');
-    var FORM_ENDPOINT = "https://email.gosecureserver.in/api/send.php";
 
     contactForm.addEventListener("submit", function (event) {
-      event.preventDefault();
       if (orderSummaryEl) orderSummaryEl.value = buildOrderSummary();
 
-      var isEnglish = document.documentElement.lang === "en";
-      var sendingText = isEnglish ? "Sending…" : "Šaljem…";
-      var errorText =
-        isEnglish
-          ? "Sending failed. Please try again or email info@nocmuzickihfenjera.com directly."
-          : "Slanje nije uspelo. Pokušajte ponovo ili pišite direktno na info@nocmuzickihfenjera.com.";
+      var hp = contactForm.querySelector('[name="hp_email"]');
+      if (hp && hp.value) {
+        event.preventDefault();
+        return;
+      }
 
       if (submitBtn) {
         submitBtn.disabled = true;
         if (!submitBtn.dataset.defaultLabel) {
           submitBtn.dataset.defaultLabel = submitBtn.textContent;
         }
-        submitBtn.textContent = sendingText;
+        submitBtn.textContent =
+          document.documentElement.lang === "en" ? "Sending…" : "Šaljem…";
       }
-
-      fetch(FORM_ENDPOINT, {
-        method: "POST",
-        body: new FormData(contactForm),
-        headers: { Accept: "application/json" }
-      })
-        .then(function (response) {
-          return response.json().catch(function () {
-            return { success: response.ok };
-          });
-        })
-        .then(function (data) {
-          if (data && data.success) {
-            window.location.href = "kontakt.html?poslato=1";
-            return;
-          }
-          throw new Error("send_failed");
-        })
-        .catch(function () {
-          alert(errorText);
-        })
-        .finally(function () {
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = submitBtn.dataset.defaultLabel || submitBtn.textContent;
-          }
-        });
     });
 
     updatePriceEstimate();
