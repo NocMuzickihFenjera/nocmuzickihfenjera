@@ -14,7 +14,7 @@
     var safeLang = lang === "en" ? "en" : "sr";
     document.documentElement.lang = safeLang;
 
-    var translatable = document.querySelectorAll("[data-i18n-sr][data-i18n-en]");
+    var translatable = document.querySelectorAll("[data-i18n-sr][data-i18n-en]:not(#price-estimate-value)");
     translatable.forEach(function (el) {
       var nextText = safeLang === "en" ? el.getAttribute("data-i18n-en") : el.getAttribute("data-i18n-sr");
       if (nextText !== null) {
@@ -305,15 +305,15 @@
         updatePriceEstimate();
       });
 
-      standardInput.addEventListener("input", function () {
+      function onTicketCountChange() {
         syncConcertRow(row);
         updatePriceEstimate();
-      });
+      }
 
-      discountInput.addEventListener("input", function () {
-        syncConcertRow(row);
-        updatePriceEstimate();
-      });
+      standardInput.addEventListener("input", onTicketCountChange);
+      standardInput.addEventListener("change", onTicketCountChange);
+      discountInput.addEventListener("input", onTicketCountChange);
+      discountInput.addEventListener("change", onTicketCountChange);
 
       attachZeroClearBehavior(standardInput);
       attachZeroClearBehavior(discountInput);
@@ -325,5 +325,17 @@
     });
 
     updatePriceEstimate();
+
+    if (window.location.search.indexOf("poslato=1") !== -1) {
+      var successNote = document.createElement("p");
+      successNote.className = "form-note form-note--success";
+      successNote.setAttribute("data-i18n-sr", "Hvala! Vaša rezervacija je poslata. Javićemo Vam se u što skorijem roku.");
+      successNote.setAttribute("data-i18n-en", "Thank you! Your reservation was sent. We will contact you as soon as possible.");
+      successNote.textContent =
+        document.documentElement.lang === "en"
+          ? successNote.getAttribute("data-i18n-en")
+          : successNote.getAttribute("data-i18n-sr");
+      contactForm.insertBefore(successNote, contactForm.firstChild);
+    }
   }
 })();
