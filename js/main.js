@@ -5,6 +5,11 @@
   var yearEl = document.getElementById("year");
   var LANG_KEY = "nmf-language";
 
+  var STANDARD_PRICE = 2000;
+  var DISCOUNT_PRICE = 1200;
+  var PACKAGE_SIZE = 4;
+  var PACKAGE_PRICE = 6000;
+
   function applyLanguage(lang) {
     var safeLang = lang === "en" ? "en" : "sr";
     document.documentElement.lang = safeLang;
@@ -128,109 +133,200 @@
   });
 
   var contactForm = document.querySelector(".contact-form");
-  var standardSeatsInput = document.getElementById("standard-seats");
-  var discountSeatsInput = document.getElementById("discount-seats");
-  var concertInputs = contactForm ? contactForm.querySelectorAll('input[name="koncerti[]"]') : [];
   var priceValueEl = document.getElementById("price-estimate-value");
+  var orderSummaryEl = document.getElementById("order-summary");
+  var priceHiddenEl = document.getElementById("price-hidden");
 
   function formatRsd(value) {
     var locale = document.documentElement.lang === "en" ? "en-US" : "sr-RS";
     return value.toLocaleString(locale) + " RSD";
   }
 
-  function getSelectedConcertIds() {
-    return Array.prototype.filter.call(concertInputs, function (input) {
-      return input.checked;
-    }).map(function (input) {
-      return input.getAttribute("data-concert-id");
-    });
-  }
-
-  function calculateBasePackagePrice(standardTickets) {
+  function calculateStandardTotal(standardTickets) {
     if (!standardTickets) return 0;
     var dp = new Array(standardTickets + 1).fill(Infinity);
     dp[0] = 0;
 
     for (var count = 1; count <= standardTickets; count += 1) {
-      dp[count] = Math.min(
-        dp[count],
-        dp[count - 1] + 2000
-      );
-      if (count >= 4) {
-        dp[count] = Math.min(dp[count], dp[count - 4] + 6000);
+      dp[count] = Math.min(dp[count], dp[count - 1] + STANDARD_PRICE);
+      if (count >= PACKAGE_SIZE) {
+        dp[count] = Math.min(dp[count], dp[count - PACKAGE_SIZE] + PACKAGE_PRICE);
       }
     }
 
     return dp[standardTickets];
   }
 
-  function calculateStandardPriceByTickets(standardTickets) {
-    if (!standardTickets) return { total: 0, note: "" };
-    return { total: calculateBasePackagePrice(standardTickets), note: "" };
+  function getConcertRows() {
+    return contactForm ? contactForm.querySelectorAll(".concert-booking") : [];
+  }
+
+  function collectBookings() {
+    var bookings = [];
+    Array.prototype.forEach.call(getConcertRows(), function (row) {
+      var checkbox = row.querySelector('input[type="checkbox"]');
+      var standardInput = row.querySelector(".ticket-input--standard");
+      var discountInput = row.querySelector(".ticket-input--discount");
+      var standard = Math.max(0, parseInt(standardInput && standardInput.value ? standardInput.value : "0", 10) || 0);
+      var discount = Math.max(0, parseInt(discountInput && discountInput.value ? discountInput.value : "0", 10) || 0);
+      if (!checkbox || (!checkbox.checked && !standard && !discount)) return;
+
+      var titleEl = row.querySelector(".concert-booking__title");
+      bookings.push({
+        title: titleEl ? titleEl.textContent.trim() : checkbox.value,
+        standard: standard,
+        discount: discount
+      });
+    });
+    return bookings;
+  }
+
+  function syncConcertRow(row) {
+    var checkbox = row.querySelector('input[type="checkbox"]');
+    var standardInput = row.querySelector(".ticket-input--standard");
+    var discountInput = row.querySelector(".ticket-input--discount");
+    var standard = Math.max(0, parseInt(standardInput.value || "0", 10) || 0);
+    var discount = Math.max(0, parseInt(discountInput.value || "0", 10) || 0);
+    var active = checkbox.checked || standard > 0 || discount > 0;
+
+    checkbox.checked = active;
+    row.classList.toggle("is-active", active);
+    standardInput.disabled = !active;
+    discountInput.disabled = !active;
+
+    if (!active) {
+      standardInput.value = "0";
+      discountInput.value = "0";
+    }
   }
 
   function updatePriceEstimate() {
     if (!contactForm || !priceValueEl) return;
+
     var isEnglish = document.documentElement.lang === "en";
     var emptyText = isEnglish
-      ? "Choose concert(s) and enter ticket quantities by category."
-      : "Odaberite koncert(e) i unesite broj karata po kategoriji.";
+      ? "Select concert(s) and enter ticket quantities."
+      : "Odaberite koncert(e) i unesite broj karata.";
 
-    var selectedIds = getSelectedConcertIds();
-    var standardSeats = parseInt(standardSeatsInput && standardSeatsInput.value ? standardSeatsInput.value : "0", 10);
-    var discountSeats = parseInt(discountSeatsInput && discountSeatsInput.value ? discountSeatsInput.value : "0", 10);
-    var totalSeats = Math.max(0, standardSeats) + Math.max(0, discountSeats);
+    var bookings = collectBookings();
+    var totalStandard = 0;
+    var totalDiscount = 0;
 
-    if (!selectedIds.length || !totalSeats) {
+    bookings.forEach(function (booking) {
+      totalStandard += booking.standard;
+      totalDiscount += booking.discount;
+    });
+
+    if (!bookings.length || (!totalStandard && !totalDiscount)) {
       priceValueEl.textContent = emptyText;
+      if (priceHiddenEl) priceHiddenEl.value = "";
       return;
     }
 
-    var concertCount = selectedIds.length;
-    var standardTickets = Math.max(0, standardSeats) * concertCount;
-    var discountTickets = Math.max(0, discountSeats) * concertCount;
-    var standardPrice = calculateStandardPriceByTickets(standardTickets);
-    var discountPrice = discountTickets * 1200;
-    var total = standardPrice.total + discountPrice;
+    var standardTotal = calculateStandardTotal(totalStandard);
+    var discountTotal = totalDiscount * DISCOUNT_PRICE;
+    var grandTotal = standardTotal + discountTotal;
     var parts = [];
 
-    if (standardSeats > 0) {
-      parts.push((isEnglish ? "standard " : "standard ") + standardSeats + " x " + concertCount + (isEnglish ? " dates = " : " datuma = ") + formatRsd(standardPrice.total));
-    }
-    if (discountSeats > 0) {
-      parts.push((isEnglish ? "discounted " : "povlašćene ") + discountSeats + " x " + concertCount + (isEnglish ? " dates = " : " datuma = ") + formatRsd(discountPrice));
+    if (totalStandard) {
+      parts.push(
+        (isEnglish ? "standard " : "standard ") +
+          totalStandard +
+          (isEnglish ? " ticket(s) = " : " karta = ") +
+          formatRsd(standardTotal)
+      );
     }
 
-    var note = standardPrice.note ? " " + standardPrice.note : "";
-    priceValueEl.textContent = (isEnglish ? "Total: " : "Ukupno: ") + formatRsd(total) + " (" + parts.join(", ") + ")." + note;
+    if (totalDiscount) {
+      parts.push(
+        (isEnglish ? "discounted " : "povlašćene ") +
+          totalDiscount +
+          (isEnglish ? " ticket(s) = " : " karte = ") +
+          formatRsd(discountTotal)
+      );
+    }
+
+    var packageNote = "";
+    if (totalStandard >= PACKAGE_SIZE) {
+      packageNote = isEnglish
+        ? " (4 standard tickets package 6000 RSD applied where possible)"
+        : " (paket 4 standardne karte 6000 RSD primenjen gde je moguće)";
+    }
+
+    var summaryText =
+      (isEnglish ? "Total: " : "Ukupno: ") + formatRsd(grandTotal) + " (" + parts.join(", ") + ")." + packageNote;
+
+    priceValueEl.textContent = summaryText;
+    if (priceHiddenEl) priceHiddenEl.value = formatRsd(grandTotal);
   }
 
   function attachZeroClearBehavior(inputEl) {
     if (!inputEl) return;
     inputEl.addEventListener("focus", function () {
-      if (inputEl.value === "0") {
-        inputEl.value = "";
-      }
+      if (inputEl.value === "0") inputEl.value = "";
     });
     inputEl.addEventListener("blur", function () {
-      if (inputEl.value === "") {
-        inputEl.value = "0";
-      }
+      if (inputEl.value === "") inputEl.value = "0";
+      var row = inputEl.closest(".concert-booking");
+      if (row) syncConcertRow(row);
       updatePriceEstimate();
     });
   }
 
-  if (contactForm && priceValueEl) {
-    Array.prototype.forEach.call(concertInputs, function (input) {
-      input.addEventListener("change", updatePriceEstimate);
+  function buildOrderSummary() {
+    var bookings = collectBookings();
+    var lines = bookings.map(function (booking) {
+      return (
+        "- " +
+        booking.title +
+        ": standard " +
+        booking.standard +
+        ", povlašćene " +
+        booking.discount
+      );
     });
-    if (standardSeatsInput) {
-      standardSeatsInput.addEventListener("input", updatePriceEstimate);
-    }
-    if (discountSeatsInput) {
-      discountSeatsInput.addEventListener("input", updatePriceEstimate);
-    }
-    attachZeroClearBehavior(standardSeatsInput);
-    attachZeroClearBehavior(discountSeatsInput);
+
+    return [
+      "REZERVACIJA KARATA — Noć Muzičkih Fenjera",
+      "",
+      "Koncerti i karte:",
+      lines.length ? lines.join("\n") : "(nije odabrano)",
+      "",
+      "Procena cene: " + (priceValueEl ? priceValueEl.textContent : ""),
+      ""
+    ].join("\n");
+  }
+
+  if (contactForm && priceValueEl) {
+    Array.prototype.forEach.call(getConcertRows(), function (row) {
+      var checkbox = row.querySelector('input[type="checkbox"]');
+      var standardInput = row.querySelector(".ticket-input--standard");
+      var discountInput = row.querySelector(".ticket-input--discount");
+
+      checkbox.addEventListener("change", function () {
+        syncConcertRow(row);
+        updatePriceEstimate();
+      });
+
+      standardInput.addEventListener("input", function () {
+        syncConcertRow(row);
+        updatePriceEstimate();
+      });
+
+      discountInput.addEventListener("input", function () {
+        syncConcertRow(row);
+        updatePriceEstimate();
+      });
+
+      attachZeroClearBehavior(standardInput);
+      attachZeroClearBehavior(discountInput);
+      syncConcertRow(row);
+    });
+
+    contactForm.addEventListener("submit", function () {
+      if (orderSummaryEl) orderSummaryEl.value = buildOrderSummary();
+    });
+
+    updatePriceEstimate();
   }
 })();
