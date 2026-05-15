@@ -976,6 +976,14 @@ main {
   text-align: center;
 }
 
+.contact-form__hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .form-note--success {
   padding: 0.85rem 1rem;
   border: 1px solid rgba(228, 165, 74, 0.35);
