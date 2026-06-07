@@ -129,8 +129,92 @@
   });
 
   document.addEventListener("keydown", function (e) {
+    if (galleryLightbox && !galleryLightbox.hidden) {
+      if (e.key === "Escape") {
+        closeGalleryLightbox();
+        return;
+      }
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        stepGalleryLightbox(-1);
+        return;
+      }
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        stepGalleryLightbox(1);
+        return;
+      }
+    }
     if (e.key === "Escape") closeMenu();
   });
+
+  var galleryLightbox = document.getElementById("gallery-lightbox");
+  var galleryTriggers = document.querySelectorAll(".gallery-item__open");
+  var galleryImages = [];
+  var galleryIndex = 0;
+
+  function collectGalleryImages() {
+    galleryImages = [];
+    galleryTriggers.forEach(function (btn) {
+      var src = btn.getAttribute("data-gallery-src");
+      if (src) galleryImages.push(src);
+    });
+  }
+
+  function updateGalleryLightbox() {
+    if (!galleryLightbox || !galleryImages.length) return;
+    var img = galleryLightbox.querySelector(".gallery-lightbox__img");
+    var counter = galleryLightbox.querySelector(".gallery-lightbox__counter");
+    if (img) img.src = galleryImages[galleryIndex];
+    if (counter) counter.textContent = (galleryIndex + 1) + " / " + galleryImages.length;
+  }
+
+  function openGalleryLightbox(index) {
+    if (!galleryLightbox || !galleryImages.length) return;
+    galleryIndex = index;
+    updateGalleryLightbox();
+    galleryLightbox.hidden = false;
+    galleryLightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeGalleryLightbox() {
+    if (!galleryLightbox) return;
+    galleryLightbox.hidden = true;
+    galleryLightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    var img = galleryLightbox.querySelector(".gallery-lightbox__img");
+    if (img) img.src = "";
+  }
+
+  function stepGalleryLightbox(direction) {
+    if (!galleryImages.length) return;
+    galleryIndex = (galleryIndex + direction + galleryImages.length) % galleryImages.length;
+    updateGalleryLightbox();
+  }
+
+  function initGalleryLightbox() {
+    if (!galleryLightbox || !galleryTriggers.length) return;
+    collectGalleryImages();
+
+    galleryTriggers.forEach(function (btn, index) {
+      btn.addEventListener("click", function () {
+        openGalleryLightbox(index);
+      });
+    });
+
+    var backdrop = galleryLightbox.querySelector(".gallery-lightbox__backdrop");
+    var closeBtn = galleryLightbox.querySelector(".gallery-lightbox__close");
+    var prevBtn = galleryLightbox.querySelector(".gallery-lightbox__nav--prev");
+    var nextBtn = galleryLightbox.querySelector(".gallery-lightbox__nav--next");
+
+    if (backdrop) backdrop.addEventListener("click", closeGalleryLightbox);
+    if (closeBtn) closeBtn.addEventListener("click", closeGalleryLightbox);
+    if (prevBtn) prevBtn.addEventListener("click", function () { stepGalleryLightbox(-1); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { stepGalleryLightbox(1); });
+  }
+
+  initGalleryLightbox();
 
   var contactForm = document.querySelector(".contact-form");
   var priceValueEl = document.getElementById("price-estimate-value");
