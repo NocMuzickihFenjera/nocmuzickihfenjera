@@ -218,8 +218,9 @@
 
   var contactForm = document.querySelector(".contact-form");
   var priceValueEl = document.getElementById("price-estimate-value");
-  var orderSummaryEl = document.getElementById("order-summary");
-  var priceHiddenEl = document.getElementById("price-hidden");
+  var emailKoncertiEl = document.getElementById("email-koncerti");
+  var emailCenaEl = document.getElementById("email-cena");
+  var emailReplytoEl = document.getElementById("email-replyto");
 
   function formatRsd(value) {
     var locale = document.documentElement.lang === "en" ? "en-US" : "sr-RS";
@@ -296,7 +297,6 @@
 
     if (!bookings.length || (!totalStandard && !totalDiscount)) {
       priceValueEl.textContent = emptyText;
-      if (priceHiddenEl) priceHiddenEl.value = "";
       return;
     }
 
@@ -334,7 +334,6 @@
       (isEnglish ? "Total: " : "Ukupno: ") + formatRsd(grandTotal) + " (" + parts.join(", ") + ")." + packageNote;
 
     priceValueEl.textContent = summaryText;
-    if (priceHiddenEl) priceHiddenEl.value = formatRsd(grandTotal);
   }
 
   function attachZeroClearBehavior(inputEl) {
@@ -350,28 +349,26 @@
     });
   }
 
-  function buildOrderSummary() {
-    var bookings = collectBookings();
-    var lines = bookings.map(function (booking) {
-      return (
-        "- " +
-        booking.title +
-        ": standard " +
-        booking.standard +
-        ", povlašćene " +
-        booking.discount
-      );
-    });
+  function ticketLabel(count, standardWord, pluralWord) {
+    return count + " " + (count === 1 ? standardWord : pluralWord);
+  }
 
-    return [
-      "REZERVACIJA KARATA — Noć Muzičkih Fenjera",
-      "",
-      "Koncerti i karte:",
-      lines.length ? lines.join("\n") : "(nije odabrano)",
-      "",
-      "Procena cene: " + (priceValueEl ? priceValueEl.textContent : ""),
-      ""
-    ].join("\n");
+  function buildConcertsEmailText() {
+    var bookings = collectBookings();
+    if (!bookings.length) return "(nije odabrano)";
+
+    return bookings
+      .map(function (booking) {
+        var lines = [booking.title];
+        if (booking.standard > 0) {
+          lines.push("Standard: " + ticketLabel(booking.standard, "karta", "karte"));
+        }
+        if (booking.discount > 0) {
+          lines.push("Povlašćene: " + ticketLabel(booking.discount, "karta", "karte"));
+        }
+        return lines.join("\n");
+      })
+      .join("\n\n");
   }
 
   if (contactForm && priceValueEl) {
@@ -407,9 +404,15 @@
     var submitBtn = contactForm.querySelector('button[type="submit"]');
 
     contactForm.addEventListener("submit", function (event) {
-      if (orderSummaryEl) orderSummaryEl.value = buildOrderSummary();
+      if (emailKoncertiEl) emailKoncertiEl.value = buildConcertsEmailText();
+      if (emailCenaEl) emailCenaEl.value = priceValueEl ? priceValueEl.textContent : "";
 
-      var hp = contactForm.querySelector('[name="hp_email"]');
+      var emailInput = contactForm.querySelector('[name="Email"]');
+      if (emailReplytoEl && emailInput) {
+        emailReplytoEl.value = emailInput.value || "";
+      }
+
+      var hp = contactForm.querySelector('[name="_honey"]');
       if (hp && hp.value) {
         event.preventDefault();
         return;

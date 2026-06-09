@@ -67,26 +67,26 @@
           <input type="hidden" name="_subject" value="Rezervacija karata — Noć Muzičkih Fenjera" />
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_next" value="https://nocmuzickihfenjera.com/kontakt.html?poslato=1" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="rezervacija_detalji" id="order-summary" value="" />
-          <input type="hidden" name="procena_cene" id="price-hidden" value="" />
+          <input type="hidden" name="_replyto" id="email-replyto" value="" />
+          <input type="hidden" name="Koncerti" id="email-koncerti" value="" />
+          <input type="hidden" name="Procena cene" id="email-cena" value="" />
           <div class="contact-form__hp" aria-hidden="true">
-            <input type="text" name="hp_email" tabindex="-1" autocomplete="off" value="" />
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off" value="" />
           </div>
 
           <fieldset class="contact-form__fieldset contact-form__fieldset--contact">
             <legend data-i18n-sr="Vaši podaci" data-i18n-en="Your details">Vaši podaci</legend>
             <label>
               <span data-i18n-sr="Ime" data-i18n-en="Name">Ime</span>
-              <input type="text" name="ime" autocomplete="name" placeholder="Vaše ime" data-i18n-placeholder-sr="Vaše ime" data-i18n-placeholder-en="Your name" />
+              <input type="text" name="Ime" autocomplete="name" placeholder="Vaše ime" data-i18n-placeholder-sr="Vaše ime" data-i18n-placeholder-en="Your name" />
             </label>
             <label>
               <span data-i18n-sr="Email" data-i18n-en="Email">Email</span>
-              <input type="email" name="email" autocomplete="email" placeholder="vas@email.com" />
+              <input type="email" name="Email" autocomplete="email" placeholder="vas@email.com" />
             </label>
             <label>
               <span data-i18n-sr="Telefon" data-i18n-en="Phone">Telefon</span>
-              <input type="tel" name="telefon" autocomplete="tel" placeholder="+381 6X XXX XXXX" data-i18n-placeholder-sr="+381 6X XXX XXXX" data-i18n-placeholder-en="+381 6X XXX XXXX" />
+              <input type="tel" name="Telefon" autocomplete="tel" placeholder="+381 6X XXX XXXX" data-i18n-placeholder-sr="+381 6X XXX XXXX" data-i18n-placeholder-en="+381 6X XXX XXXX" />
             </label>
           </fieldset>
 
@@ -98,7 +98,7 @@
               <div class="concert-row concert-row--sold-out" data-concert-id="2026-06-12">
                 <div class="concert-booking__head">
                   <label class="concert-booking__check">
-                    <input type="checkbox" name="koncert_ukljucen[]" value="12. jun 2026 — World &amp; YU Rock Classics" disabled />
+                    <input type="checkbox" value="12. jun 2026 — World &amp; YU Rock Classics" disabled />
                     <span class="concert-row__label-text">
                       <span class="concert-row__title" data-i18n-sr="12. jun 2026 — World &amp; YU Rock Classics" data-i18n-en="12 Jun 2026 — World &amp; YU Rock Classics">12. jun 2026 — World &amp; YU Rock Classics</span>
                       <span class="concert-row__sold-out" data-i18n-sr="RASPRODATO" data-i18n-en="SOLD OUT">RASPRODATO</span>
@@ -108,11 +108,11 @@
                 <div class="concert-booking__tickets">
                   <label>
                     <span class="concert-row__qty-label" data-i18n-sr="Standardna karta" data-i18n-en="Standard ticket">Standardna Karta</span>
-                    <input type="number" class="ticket-input--standard" name="standard_2026-06-12" min="0" step="1" value="0" disabled />
+                    <input type="number" class="ticket-input--standard" min="0" step="1" value="0" disabled />
                   </label>
                   <label>
                     <span class="concert-row__qty-label" data-i18n-sr="Povlašćena (mlađi od 26 i 65+)" data-i18n-en="Discounted (under 26 and 65+)">Povlašćena (mlađi od 26 i 65+)</span>
-                    <input type="number" class="ticket-input--discount" name="povlasceno_2026-06-12" min="0" step="1" value="0" disabled />
+                    <input type="number" class="ticket-input--discount" min="0" step="1" value="0" disabled />
                   </label>
                 </div>
               </div>
@@ -120,7 +120,7 @@
               <div class="concert-row" data-concert-id="2026-06-17">
                 <div class="concert-booking__head">
                   <label class="concert-booking__check">
-                    <input type="checkbox" name="koncert_ukljucen[]" value="17. jun 2026 — Muzički spektakl" />
+                    <input type="checkbox" value="17. jun 2026 — Muzički spektakl" />
                     <span class="concert-row__label-text">
                       <span class="concert-row__title" data-i18n-sr="17. jun 2026 — Muzički spektakl" data-i18n-en="17 Jun 2026 — Musical spectacle">17. jun 2026 — Muzički spektakl</span>
                       <span class="concert-capacity" data-i18n-sr="Popunjeno: 70%" data-i18n-en="Filled: 70%">Popunjeno: 70%</span>
@@ -130,11 +130,11 @@
                 <div class="concert-booking__tickets">
                   <label>
                     <span class="concert-row__qty-label" data-i18n-sr="Standardna karta" data-i18n-en="Standard ticket">Standardna Karta</span>
-                    <input type="number" class="ticket-input--standard" name="standard_2026-06-17" min="0" step="1" value="0" />
+                    <input type="number" class="ticket-input--standard" min="0" step="1" value="0" />
                   </label>
                   <label>
                     <span class="concert-row__qty-label" data-i18n-sr="Povlašćena (mlađi od 26 i 65+)" data-i18n-en="Discounted (under 26 and 65+)">Povlašćena (mlađi od 26 i 65+)</span>
-                    <input type="number" class="ticket-input--discount" name="povlasceno_2026-06-17" min="0" step="1" value="0" />
+                    <input type="number" class="ticket-input--discount" min="0" step="1" value="0" />
                   </label>
                 </div>
               </div>
@@ -142,7 +142,7 @@
               <div class="concert-row" data-concert-id="2026-07-04">
                 <div class="concert-booking__head">
                   <label class="concert-booking__check">
-                    <input type="checkbox" name="koncert_ukljucen[]" value="04. jul 2026 — Meditativno Klavirsko Veče — Matthew Mayer USA" />
+                    <input type="checkbox" value="04. jul 2026 — Meditativno Klavirsko Veče — Matthew Mayer USA" />
                     <span class="concert-row__label-text">
                       <span class="concert-row__title" data-i18n-sr="04. jul 2026 — Meditativno Klavirsko Veče — Matthew Mayer USA" data-i18n-en="04 Jul 2026 — Meditative Piano Evening — Matthew Mayer USA">04. jul 2026 — Meditativno Klavirsko Veče — Matthew Mayer USA</span>
                     </span>
@@ -151,11 +151,11 @@
                 <div class="concert-booking__tickets">
                   <label>
                     <span class="concert-row__qty-label" data-i18n-sr="Standardna karta" data-i18n-en="Standard ticket">Standardna Karta</span>
-                    <input type="number" class="ticket-input--standard" name="standard_2026-07-04" min="0" step="1" value="0" />
+                    <input type="number" class="ticket-input--standard" min="0" step="1" value="0" />
                   </label>
                   <label>
                     <span class="concert-row__qty-label" data-i18n-sr="Povlašćena (mlađi od 26 i 65+)" data-i18n-en="Discounted (under 26 and 65+)">Povlašćena (mlađi od 26 i 65+)</span>
-                    <input type="number" class="ticket-input--discount" name="povlasceno_2026-07-04" min="0" step="1" value="0" />
+                    <input type="number" class="ticket-input--discount" min="0" step="1" value="0" />
                   </label>
                 </div>
               </div>
@@ -163,7 +163,7 @@
               <div class="concert-row" data-concert-id="2026-07-10">
                 <div class="concert-booking__head">
                   <label class="concert-booking__check">
-                    <input type="checkbox" name="koncert_ukljucen[]" value="10. jul 2026 — Jazz pod zvezdama" />
+                    <input type="checkbox" value="10. jul 2026 — Jazz pod zvezdama" />
                     <span class="concert-row__label-text">
                       <span class="concert-row__title" data-i18n-sr="10. jul 2026 — Jazz pod zvezdama" data-i18n-en="10 Jul 2026 — Jazz under the stars">10. jul 2026 — Jazz pod zvezdama</span>
                       <span class="concert-capacity" data-i18n-sr="Popunjeno: 80%" data-i18n-en="Filled: 80%">Popunjeno: 80%</span>
@@ -173,11 +173,11 @@
                 <div class="concert-booking__tickets">
                   <label>
                     <span class="concert-row__qty-label" data-i18n-sr="Standardna karta" data-i18n-en="Standard ticket">Standardna Karta</span>
-                    <input type="number" class="ticket-input--standard" name="standard_2026-07-10" min="0" step="1" value="0" />
+                    <input type="number" class="ticket-input--standard" min="0" step="1" value="0" />
                   </label>
                   <label>
                     <span class="concert-row__qty-label" data-i18n-sr="Povlašćena (mlađi od 26 i 65+)" data-i18n-en="Discounted (under 26 and 65+)">Povlašćena (mlađi od 26 i 65+)</span>
-                    <input type="number" class="ticket-input--discount" name="povlasceno_2026-07-10" min="0" step="1" value="0" />
+                    <input type="number" class="ticket-input--discount" min="0" step="1" value="0" />
                   </label>
                 </div>
               </div>
@@ -185,7 +185,7 @@
               <div class="concert-row" data-concert-id="2026-07-23">
                 <div class="concert-booking__head">
                   <label class="concert-booking__check">
-                    <input type="checkbox" name="koncert_ukljucen[]" value="23. jul 2026 — Svetska i domaća filmska muzika" />
+                    <input type="checkbox" value="23. jul 2026 — Svetska i domaća filmska muzika" />
                     <span class="concert-row__label-text">
                       <span class="concert-row__title" data-i18n-sr="23. jul 2026 — Svetska i domaća filmska muzika" data-i18n-en="23 Jul 2026 — World and Serbian film music">23. jul 2026 — Svetska i domaća filmska muzika</span>
                       <span class="concert-capacity" data-i18n-sr="Popunjeno: 45%" data-i18n-en="Filled: 45%">Popunjeno: 45%</span>
@@ -195,11 +195,11 @@
                 <div class="concert-booking__tickets">
                   <label>
                     <span class="concert-row__qty-label" data-i18n-sr="Standardna karta" data-i18n-en="Standard ticket">Standardna Karta</span>
-                    <input type="number" class="ticket-input--standard" name="standard_2026-07-23" min="0" step="1" value="0" />
+                    <input type="number" class="ticket-input--standard" min="0" step="1" value="0" />
                   </label>
                   <label>
                     <span class="concert-row__qty-label" data-i18n-sr="Povlašćena (mlađi od 26 i 65+)" data-i18n-en="Discounted (under 26 and 65+)">Povlašćena (mlađi od 26 i 65+)</span>
-                    <input type="number" class="ticket-input--discount" name="povlasceno_2026-07-23" min="0" step="1" value="0" />
+                    <input type="number" class="ticket-input--discount" min="0" step="1" value="0" />
                   </label>
                 </div>
               </div>
@@ -207,7 +207,7 @@
               <div class="concert-row" data-concert-id="2026-07-30">
                 <div class="concert-booking__head">
                   <label class="concert-booking__check">
-                    <input type="checkbox" name="koncert_ukljucen[]" value="30. jul 2026 — YU Rock veče" />
+                    <input type="checkbox" value="30. jul 2026 — YU Rock veče" />
                     <span class="concert-row__label-text">
                       <span class="concert-row__title" data-i18n-sr="30. jul 2026 — YU Rock veče" data-i18n-en="30 Jul 2026 — YU Rock night">30. jul 2026 — YU Rock veče</span>
                       <span class="concert-capacity" data-i18n-sr="Popunjeno: 40%" data-i18n-en="Filled: 40%">Popunjeno: 40%</span>
@@ -217,11 +217,11 @@
                 <div class="concert-booking__tickets">
                   <label>
                     <span class="concert-row__qty-label" data-i18n-sr="Standardna karta" data-i18n-en="Standard ticket">Standardna Karta</span>
-                    <input type="number" class="ticket-input--standard" name="standard_2026-07-30" min="0" step="1" value="0" />
+                    <input type="number" class="ticket-input--standard" min="0" step="1" value="0" />
                   </label>
                   <label>
                     <span class="concert-row__qty-label" data-i18n-sr="Povlašćena (mlađi od 26 i 65+)" data-i18n-en="Discounted (under 26 and 65+)">Povlašćena (mlađi od 26 i 65+)</span>
-                    <input type="number" class="ticket-input--discount" name="povlasceno_2026-07-30" min="0" step="1" value="0" />
+                    <input type="number" class="ticket-input--discount" min="0" step="1" value="0" />
                   </label>
                 </div>
               </div>
@@ -232,7 +232,7 @@
                   <div class="concert-row concert-row--past" data-concert-id="2026-05-30">
                     <div class="concert-booking__head">
                       <label class="concert-booking__check">
-                        <input type="checkbox" name="koncert_ukljucen[]" value="30. maj 2026 — Matthew Mayer &amp; Matej Jovanović — Spektakl" disabled />
+                        <input type="checkbox" value="30. maj 2026 — Matthew Mayer &amp; Matej Jovanović — Spektakl" disabled />
                         <span class="concert-row__label-text">
                           <span class="concert-row__title" data-i18n-sr="30. maj 2026 — Matthew Mayer &amp; Matej Jovanović — Spektakl" data-i18n-en="30 May 2026 — Matthew Mayer &amp; Matej Jovanović — Spectacle">30. maj 2026 — Matthew Mayer &amp; Matej Jovanović — Spektakl</span>
                         </span>
@@ -243,7 +243,7 @@
                   <div class="concert-row concert-row--past" data-concert-id="2026-05-31">
                     <div class="concert-booking__head">
                       <label class="concert-booking__check">
-                        <input type="checkbox" name="koncert_ukljucen[]" value="31. maj 2026 — Matthew Mayer &amp; Matej Jovanović — Spektakl" disabled />
+                        <input type="checkbox" value="31. maj 2026 — Matthew Mayer &amp; Matej Jovanović — Spektakl" disabled />
                         <span class="concert-row__label-text">
                           <span class="concert-row__title" data-i18n-sr="31. maj 2026 — Matthew Mayer &amp; Matej Jovanović — Spektakl" data-i18n-en="31 May 2026 — Matthew Mayer &amp; Matej Jovanović — Spectacle">31. maj 2026 — Matthew Mayer &amp; Matej Jovanović — Spektakl</span>
                         </span>
@@ -254,7 +254,7 @@
                   <div class="concert-row concert-row--past" data-concert-id="2026-06-05">
                     <div class="concert-booking__head">
                       <label class="concert-booking__check">
-                        <input type="checkbox" name="koncert_ukljucen[]" value="05. jun 2026 — Svetska i domaća filmska muzika" disabled />
+                        <input type="checkbox" value="05. jun 2026 — Svetska i domaća filmska muzika" disabled />
                         <span class="concert-row__label-text">
                           <span class="concert-row__title" data-i18n-sr="05. jun 2026 — Svetska i domaća filmska muzika" data-i18n-en="05 Jun 2026 — World and Serbian film music">05. jun 2026 — Svetska i domaća filmska muzika</span>
                         </span>
@@ -273,7 +273,7 @@
 
           <label>
             <span data-i18n-sr="Napomena" data-i18n-en="Note">Napomena</span>
-            <textarea name="poruka" rows="5" placeholder="Vaša napomena (opciono)" data-i18n-placeholder-sr="Vaša napomena (opciono)" data-i18n-placeholder-en="Your note (optional)"></textarea>
+            <textarea name="Napomena" rows="5" placeholder="Vaša napomena (opciono)" data-i18n-placeholder-sr="Vaša napomena (opciono)" data-i18n-placeholder-en="Your note (optional)"></textarea>
           </label>
 
           <p class="form-note" data-i18n-sr="Rezervišite karte putem upita. Bićete kontaktirani, a karte ćete moći da platite i preuzmete na blagajni Konaka Kneginje Ljubice." data-i18n-en="Reserve tickets via inquiry. We will contact you, and tickets can be paid for and collected at the Konak of Princess Ljubica box office.">Rezervišite karte putem upita. Bićete kontaktirani, a karte ćete moći da platite i preuzmete na blagajni Konaka Kneginje Ljubice.</p>
