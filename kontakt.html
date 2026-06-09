@@ -63,10 +63,11 @@
           <p class="pricing-strip__note" data-i18n-sr="Paket 6000 RSD važi samo za standardne karte. Povlašćene: 1200 RSD po karti." data-i18n-en="The 6000 RSD package applies to standard tickets only. Discounted: 1200 RSD per ticket.">Paket 6000 RSD važi samo za standardne karte. Povlašćene: 1200 RSD po karti.</p>
         </div>
 
-        <form class="contact-form" action="#" method="POST" accept-charset="utf-8">
-          <input type="hidden" name="access_key" value="8c6efcfa-d049-4ebc-b740-8c3addae5283" />
-          <input type="hidden" name="subject" value="Rezervacija karata — Noć Muzičkih Fenjera" />
-          <input type="hidden" name="from_name" value="Noć Muzičkih Fenjera — rezervacija" />
+        <form class="contact-form" action="https://formsubmit.co/info@nocmuzickihfenjera.com" method="POST" accept-charset="utf-8">
+          <input type="hidden" name="_subject" value="Rezervacija karata — Noć Muzičkih Fenjera" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="https://nocmuzickihfenjera.com/kontakt.html?poslato=1" />
+          <input type="hidden" name="_template" value="table" />
           <input type="hidden" name="rezervacija_detalji" id="order-summary" value="" />
           <input type="hidden" name="procena_cene" id="price-hidden" value="" />
           <div class="contact-form__hp" aria-hidden="true">
@@ -291,6 +292,6 @@
     <p data-i18n-html-sr="© <span id='year'></span> Noć Muzičkih Fenjera · veče pod fenjerima" data-i18n-html-en="© <span id='year'></span> Night of Musical Lanterns · an evening under lanterns">© <span id="year"></span> Noć Muzičkih Fenjera · veče pod fenjerima</p>
   </footer>
 
-  <script src="js/main.js?v=bde9cbe"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
