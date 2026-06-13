@@ -221,6 +221,11 @@
   var emailKoncertiEl = document.getElementById("email-koncerti");
   var emailCenaEl = document.getElementById("email-cena");
   var emailReplytoEl = document.getElementById("email-replyto");
+  var formValidationEl = document.getElementById("form-validation");
+  var formSuccessBannerEl = document.getElementById("form-success-banner");
+  var imeInputEl = document.getElementById("ime-input");
+  var emailInputEl = document.getElementById("email-input");
+  var telefonInputEl = document.getElementById("telefon-input");
 
   function formatRsd(value) {
     var locale = document.documentElement.lang === "en" ? "en-US" : "sr-RS";
@@ -393,6 +398,100 @@
     if (emailCenaEl && priceValueEl) emailCenaEl.value = priceValueEl.textContent.trim();
   }
 
+  function getFormMessages() {
+    var isEnglish = document.documentElement.lang === "en";
+    return {
+      nameRequired: isEnglish ? "Please enter your name." : "Unesite Vaše ime.",
+      contactRequired: isEnglish
+        ? "Please enter your email or phone number so we can contact you."
+        : "Unesite email ili telefon kako bismo Vas mogli kontaktirati.",
+      concertRequired: isEnglish
+        ? "Select at least one concert and enter the number of tickets."
+        : "Označite bar jedan koncert i unesite broj karata.",
+      ticketsRequired: isEnglish
+        ? "Enter at least one ticket (standard or discounted) for the selected concert."
+        : "Unesite bar jednu kartu (standard ili povlašćenu) za odabrani koncert."
+    };
+  }
+
+  function clearFormValidation() {
+    if (formValidationEl) {
+      formValidationEl.hidden = true;
+      formValidationEl.textContent = "";
+    }
+    if (imeInputEl) imeInputEl.classList.remove("is-invalid");
+    if (emailInputEl) emailInputEl.classList.remove("is-invalid");
+    if (telefonInputEl) telefonInputEl.classList.remove("is-invalid");
+    contactForm.querySelectorAll(".concert-row.is-invalid").forEach(function (row) {
+      row.classList.remove("is-invalid");
+    });
+  }
+
+  function showFormValidation(message, focusEl) {
+    if (formValidationEl) {
+      formValidationEl.textContent = message;
+      formValidationEl.hidden = false;
+    }
+    if (focusEl) {
+      focusEl.classList.add("is-invalid");
+      focusEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (typeof focusEl.focus === "function") focusEl.focus();
+    }
+  }
+
+  function hasSelectedTickets() {
+    var bookings = collectBookings();
+    if (!bookings.length) return false;
+    return bookings.some(function (booking) {
+      return booking.standard > 0 || booking.discount > 0;
+    });
+  }
+
+  function validateContactForm() {
+    clearFormValidation();
+    var messages = getFormMessages();
+    var name = imeInputEl ? imeInputEl.value.trim() : "";
+    var email = emailInputEl ? emailInputEl.value.trim() : "";
+    var phone = telefonInputEl ? telefonInputEl.value.trim() : "";
+
+    if (!name) {
+      showFormValidation(messages.nameRequired, imeInputEl);
+      return false;
+    }
+
+    if (!email && !phone) {
+      showFormValidation(messages.contactRequired, emailInputEl || telefonInputEl);
+      if (emailInputEl) emailInputEl.classList.add("is-invalid");
+      if (telefonInputEl) telefonInputEl.classList.add("is-invalid");
+      return false;
+    }
+
+    var bookings = collectBookings();
+    if (!bookings.length) {
+      showFormValidation(messages.concertRequired, contactForm.querySelector(".concert-row:not(.concert-row--sold-out):not(.concert-row--past)"));
+      return false;
+    }
+
+    if (!hasSelectedTickets()) {
+      var firstActiveRow = contactForm.querySelector(".concert-row.is-active") ||
+        contactForm.querySelector(".concert-row:not(.concert-row--sold-out):not(.concert-row--past)");
+      showFormValidation(messages.ticketsRequired, firstActiveRow);
+      if (firstActiveRow) firstActiveRow.classList.add("is-invalid");
+      return false;
+    }
+
+    return true;
+  }
+
+  function showSuccessBanner() {
+    if (!formSuccessBannerEl) return;
+    formSuccessBannerEl.hidden = false;
+    formSuccessBannerEl.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (window.history.replaceState) {
+      window.history.replaceState({}, document.title, "kontakt.html");
+    }
+  }
+
   if (contactForm && priceValueEl) {
     Array.prototype.forEach.call(getConcertRows(), function (row) {
       if (!isBookableRow(row)) return;
@@ -423,22 +522,31 @@
       attachZeroClearBehavior(standardInput);
       attachZeroClearBehavior(discountInput);
       syncConcertRow(row);
+
+      checkbox.addEventListener("change", clearFormValidation);
+      standardInput.addEventListener("input", clearFormValidation);
+      discountInput.addEventListener("input", clearFormValidation);
     });
 
     var submitBtn = contactForm.querySelector('button[type="submit"]');
 
     contactForm.addEventListener("submit", function (event) {
+      var hp = contactForm.querySelector('[name="_honey"]');
+      if (hp && hp.value) {
+        event.preventDefault();
+        return;
+      }
+
+      if (!validateContactForm()) {
+        event.preventDefault();
+        return;
+      }
+
       syncEmailFields();
 
       var emailInput = contactForm.querySelector('[name="Email"]');
       if (emailReplytoEl && emailInput) {
         emailReplytoEl.value = emailInput.value || "";
-      }
-
-      var hp = contactForm.querySelector('[name="_honey"]');
-      if (hp && hp.value) {
-        event.preventDefault();
-        return;
       }
 
       if (submitBtn) {
@@ -451,18 +559,20 @@
       }
     });
 
+    if (imeInputEl) {
+      imeInputEl.addEventListener("input", clearFormValidation);
+    }
+    if (emailInputEl) {
+      emailInputEl.addEventListener("input", clearFormValidation);
+    }
+    if (telefonInputEl) {
+      telefonInputEl.addEventListener("input", clearFormValidation);
+    }
+
     updatePriceEstimate();
 
     if (window.location.search.indexOf("poslato=1") !== -1) {
-      var successNote = document.createElement("p");
-      successNote.className = "form-note form-note--success";
-      successNote.setAttribute("data-i18n-sr", "Hvala! Vaša rezervacija je poslata. Javićemo Vam se u što skorijem roku.");
-      successNote.setAttribute("data-i18n-en", "Thank you! Your reservation was sent. We will contact you as soon as possible.");
-      successNote.textContent =
-        document.documentElement.lang === "en"
-          ? successNote.getAttribute("data-i18n-en")
-          : successNote.getAttribute("data-i18n-sr");
-      contactForm.insertBefore(successNote, contactForm.firstChild);
+      showSuccessBanner();
     }
   }
 })();

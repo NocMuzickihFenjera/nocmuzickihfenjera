@@ -45,7 +45,14 @@
     <section class="section section--contact section--page-top">
       <div class="section__container section__container--contact-form">
         <h1 class="section__title" data-i18n-sr="Karte i kontakt" data-i18n-en="Tickets &amp; Contact">Karte i kontakt</h1>
-        <p class="section__intro" data-i18n-html-sr="Rezervišite karte za koncerte putem forme ispod.<br>Javićemo Vam se u što skorijem roku. Procena cene se računa automatski." data-i18n-html-en="Reserve tickets using the form below.<br>We will contact you as soon as possible. The price estimate is calculated automatically.">Rezervišite karte za koncerte putem forme ispod.<br>Javićemo Vam se u što skorijem roku. Procena cene se računa automatski.</p>
+        <p class="section__intro" data-i18n-html-sr="Tri koraka: unesite <strong>ime</strong>, označite koncert i broj karata, zatim kliknite <strong>Pošalji rezervaciju</strong>.<br>Javićemo Vam se u što skorijem roku. Procena cene se računa automatski." data-i18n-html-en="Three steps: enter your <strong>name</strong>, select a concert and ticket count, then click <strong>Send reservation</strong>.<br>We will contact you as soon as possible. The price estimate is calculated automatically.">Tri koraka: unesite <strong>ime</strong>, označite koncert i broj karata, zatim kliknite <strong>Pošalji rezervaciju</strong>.<br>Javićemo Vam se u što skorijem roku. Procena cene se računa automatski.</p>
+
+        <div class="form-success-banner" id="form-success-banner" hidden role="status">
+          <p class="form-success-banner__title" data-i18n-sr="Rezervacija je uspešno poslata!" data-i18n-en="Your reservation was sent successfully!">Rezervacija je uspešno poslata!</p>
+          <p class="form-success-banner__text" data-i18n-sr="Primili smo Vaš upit. Javićemo Vam se uskoro na email ili telefon koji ste ostavili." data-i18n-en="We received your request. We will contact you soon at the email or phone number you provided.">Primili smo Vaš upit. Javićemo Vam se uskoro na email ili telefon koji ste ostavili.</p>
+        </div>
+
+        <div class="form-validation" id="form-validation" role="alert" hidden></div>
 
         <div class="pricing-strip pricing-strip--contact">
           <p class="pricing-strip__lead" data-i18n-sr="Istaknute cene" data-i18n-en="Highlighted prices">Istaknute cene</p>
@@ -76,18 +83,20 @@
 
           <fieldset class="contact-form__fieldset contact-form__fieldset--contact">
             <legend data-i18n-sr="Vaši podaci" data-i18n-en="Your details">Vaši podaci</legend>
+            <p class="contact-form__required-note" data-i18n-sr="Polje označeno zvezdicom (*) je obavezno." data-i18n-en="Fields marked with an asterisk (*) are required.">Polje označeno zvezdicom (*) je obavezno.</p>
             <label>
-              <span data-i18n-sr="Ime" data-i18n-en="Name">Ime</span>
-              <input type="text" name="Ime" autocomplete="name" placeholder="Vaše ime" data-i18n-placeholder-sr="Vaše ime" data-i18n-placeholder-en="Your name" />
+              <span data-i18n-sr="Ime *" data-i18n-en="Name *">Ime *</span>
+              <input type="text" name="Ime" id="ime-input" autocomplete="name" required placeholder="Vaše ime i prezime" data-i18n-placeholder-sr="Vaše ime i prezime" data-i18n-placeholder-en="Your first and last name" />
             </label>
             <label>
               <span data-i18n-sr="Email" data-i18n-en="Email">Email</span>
-              <input type="email" name="Email" autocomplete="email" placeholder="vas@email.com" />
+              <input type="email" name="Email" id="email-input" autocomplete="email" placeholder="vas@email.com (preporučeno)" data-i18n-placeholder-sr="vas@email.com (preporučeno)" data-i18n-placeholder-en="you@email.com (recommended)" />
             </label>
             <label>
               <span data-i18n-sr="Telefon" data-i18n-en="Phone">Telefon</span>
-              <input type="tel" name="Telefon" autocomplete="tel" placeholder="+381 6X XXX XXXX" data-i18n-placeholder-sr="+381 6X XXX XXXX" data-i18n-placeholder-en="+381 6X XXX XXXX" />
+              <input type="tel" name="Telefon" id="telefon-input" autocomplete="tel" placeholder="+381 6X XXX XXXX" data-i18n-placeholder-sr="+381 6X XXX XXXX" data-i18n-placeholder-en="+381 6X XXX XXXX" />
             </label>
+            <p class="contact-form__hint contact-form__hint--contact" data-i18n-sr="Unesite bar email ili telefon kako bismo Vas mogli kontaktirati." data-i18n-en="Please provide at least an email or phone number so we can reach you.">Unesite bar email ili telefon kako bismo Vas mogli kontaktirati.</p>
           </fieldset>
 
           <fieldset class="contact-form__fieldset">
@@ -276,7 +285,7 @@
             <textarea name="Napomena" rows="5" placeholder="Vaša napomena (opciono)" data-i18n-placeholder-sr="Vaša napomena (opciono)" data-i18n-placeholder-en="Your note (optional)"></textarea>
           </label>
 
-          <p class="form-note" data-i18n-sr="Rezervišite karte putem upita. Bićete kontaktirani, a karte ćete moći da platite i preuzmete na blagajni Konaka Kneginje Ljubice." data-i18n-en="Reserve tickets via inquiry. We will contact you, and tickets can be paid for and collected at the Konak of Princess Ljubica box office.">Rezervišite karte putem upita. Bićete kontaktirani, a karte ćete moći da platite i preuzmete na blagajni Konaka Kneginje Ljubice.</p>
+          <p class="form-note" data-i18n-sr="Kliknite dugme ispod da pošaljete rezervaciju. Posle slanja videćete poruku da je upit primljen." data-i18n-en="Click the button below to send your reservation. After sending, you will see a confirmation that we received your request.">Kliknite dugme ispod da pošaljete rezervaciju. Posle slanja videćete poruku da je upit primljen.</p>
           <button class="btn btn--primary btn--wide" type="submit" data-i18n-sr="Pošalji rezervaciju" data-i18n-en="Send reservation">Pošalji rezervaciju</button>
         </form>
 
@@ -292,6 +301,6 @@
     <p data-i18n-html-sr="© <span id='year'></span> Noć Muzičkih Fenjera · veče pod fenjerima" data-i18n-html-en="© <span id='year'></span> Night of Musical Lanterns · an evening under lanterns">© <span id="year"></span> Noć Muzičkih Fenjera · veče pod fenjerima</p>
   </footer>
 
-  <script src="js/main.js?v=5855e0f"></script>
+  <script src="js/main.js?v=form-ux"></script>
 </body>
 </html>
