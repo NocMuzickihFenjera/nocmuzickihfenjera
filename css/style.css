@@ -1302,23 +1302,13 @@ main {
 }
 
 .splash__title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.08em;
   font-family: var(--font-display);
-  font-size: clamp(3.2rem, 11vw, 6.5rem);
+  font-size: clamp(1.85rem, 5.8vw, 4.75rem);
   font-weight: 600;
-  line-height: 0.92;
-  letter-spacing: 0.04em;
+  line-height: 1.05;
+  letter-spacing: 0.14em;
   margin: 0 0 1.35rem;
-  text-transform: none;
-}
-
-.splash__title-line {
-  display: block;
-  width: 100%;
-  text-align: center;
+  white-space: nowrap;
   background: linear-gradient(135deg, #fff8f0 0%, #e8d5c4 45%, #c9a87c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1328,14 +1318,17 @@ main {
 
 @media (min-width: 900px) {
   .splash__title {
-    align-items: flex-start;
-    font-size: clamp(4rem, 7.5vw, 7rem);
-    letter-spacing: 0.06em;
+    font-size: clamp(3rem, 4.8vw, 5.25rem);
+    letter-spacing: 0.18em;
     margin-bottom: 1.5rem;
   }
+}
 
-  .splash__title-line {
-    text-align: left;
+@media (max-width: 420px) {
+  .splash__title {
+    white-space: normal;
+    letter-spacing: 0.08em;
+    font-size: clamp(1.65rem, 7.5vw, 2.15rem);
   }
 }
 
