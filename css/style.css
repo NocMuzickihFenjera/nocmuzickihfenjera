@@ -1706,8 +1706,27 @@ main {
 }
 
 .concert-row--sold-out,
-.concert-row--past {
+.concert-row--past,
+.concert-row--coming-soon {
   opacity: 0.75;
+}
+
+.concert-card--coming-soon {
+  opacity: 0.72;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.concert-card__coming-soon,
+.concert-row__coming-soon {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.2vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0.85;
 }
 
 /* Gallery */

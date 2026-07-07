@@ -468,13 +468,13 @@
 
     var bookings = collectBookings();
     if (!bookings.length) {
-      showFormValidation(messages.concertRequired, contactForm.querySelector(".concert-row:not(.concert-row--sold-out):not(.concert-row--past)"));
+      showFormValidation(messages.concertRequired, contactForm.querySelector(".concert-row:not(.concert-row--sold-out):not(.concert-row--past):not(.concert-row--coming-soon)"));
       return false;
     }
 
     if (!hasSelectedTickets()) {
       var firstActiveRow = contactForm.querySelector(".concert-row.is-active") ||
-        contactForm.querySelector(".concert-row:not(.concert-row--sold-out):not(.concert-row--past)");
+        contactForm.querySelector(".concert-row:not(.concert-row--sold-out):not(.concert-row--past):not(.concert-row--coming-soon)");
       showFormValidation(messages.ticketsRequired, firstActiveRow);
       if (firstActiveRow) firstActiveRow.classList.add("is-invalid");
       return false;
