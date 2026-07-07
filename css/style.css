@@ -1225,11 +1225,12 @@ main {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: min(920px, 94vw);
+  max-width: min(1100px, 96vw);
 }
 
 .splash__copy {
   width: 100%;
+  container-type: inline-size;
 }
 
 @media (min-width: 900px) {
@@ -1244,14 +1245,16 @@ main {
   }
 
   .splash__content {
-    flex: 1;
+    flex: 1 1 auto;
     min-width: 0;
-    max-width: min(760px, 58vw);
+    max-width: none;
+    width: auto;
     align-items: flex-start;
   }
 
   .splash__copy {
     min-width: 0;
+    width: 100%;
   }
 
   .splash__art {
@@ -1302,13 +1305,17 @@ main {
 }
 
 .splash__title {
+  display: block;
+  width: 100%;
+  max-width: 100%;
   font-family: var(--font-display);
-  font-size: clamp(1.85rem, 5.8vw, 4.75rem);
+  font-size: clamp(1.45rem, 7.2cqw, 3.5rem);
   font-weight: 600;
-  line-height: 1.05;
-  letter-spacing: 0.14em;
+  line-height: 1.1;
+  letter-spacing: 0.06em;
   margin: 0 0 1.35rem;
   white-space: nowrap;
+  overflow: visible;
   background: linear-gradient(135deg, #fff8f0 0%, #e8d5c4 45%, #c9a87c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1318,8 +1325,8 @@ main {
 
 @media (min-width: 900px) {
   .splash__title {
-    font-size: clamp(3rem, 4.8vw, 5.25rem);
-    letter-spacing: 0.18em;
+    font-size: clamp(2rem, 6.8cqw, 3.75rem);
+    letter-spacing: 0.08em;
     margin-bottom: 1.5rem;
   }
 }
@@ -1327,8 +1334,8 @@ main {
 @media (max-width: 420px) {
   .splash__title {
     white-space: normal;
-    letter-spacing: 0.08em;
-    font-size: clamp(1.65rem, 7.5vw, 2.15rem);
+    letter-spacing: 0.05em;
+    font-size: clamp(1.5rem, 8.5cqw, 2rem);
   }
 }
 
