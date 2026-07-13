@@ -651,6 +651,13 @@ main {
   text-transform: uppercase;
 }
 
+.concert-card__time {
+  margin-top: 0.35rem;
+  color: var(--accent);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+
 .concert-card__capacity {
   margin: 0.4rem 0 0;
   color: #f3d6a1;
