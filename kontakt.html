@@ -104,28 +104,6 @@
             <p class="contact-form__hint" data-i18n-sr="Označite koncert i unesite broj karata (standard ili povlašćene)." data-i18n-en="Select a concert and enter ticket counts (standard or discounted).">Označite koncert i unesite broj karata (standard ili povlašćene).</p>
 
             <div class="contact-form__checkboxes concert-rows" id="concert-bookings">
-              <div class="concert-row concert-row--sold-out" data-concert-id="2026-07-10">
-                <div class="concert-booking__head">
-                  <label class="concert-booking__check">
-                    <input type="checkbox" value="10. jul 2026 — Jazz pod zvezdama" disabled />
-                    <span class="concert-row__label-text">
-                      <span class="concert-row__title" data-i18n-sr="10. jul 2026 — Jazz pod zvezdama" data-i18n-en="10 Jul 2026 — Jazz under the stars">10. jul 2026 — Jazz pod zvezdama</span>
-                      <span class="concert-row__sold-out" data-i18n-sr="RASPRODATO" data-i18n-en="SOLD OUT">RASPRODATO</span>
-                    </span>
-                  </label>
-                </div>
-                <div class="concert-booking__tickets">
-                  <label>
-                    <span class="concert-row__qty-label" data-i18n-sr="Standardna karta" data-i18n-en="Standard ticket">Standardna Karta</span>
-                    <input type="number" class="ticket-input--standard" min="0" step="1" value="0" disabled />
-                  </label>
-                  <label>
-                    <span class="concert-row__qty-label" data-i18n-sr="Povlašćena (mlađi od 26 i 65+)" data-i18n-en="Discounted (under 26 and 65+)">Povlašćena (mlađi od 26 i 65+)</span>
-                    <input type="number" class="ticket-input--discount" min="0" step="1" value="0" disabled />
-                  </label>
-                </div>
-              </div>
-
               <div class="concert-row concert-row--sold-out" data-concert-id="2026-07-23">
                 <div class="concert-booking__head">
                   <label class="concert-booking__check">
@@ -257,6 +235,17 @@
               <details class="previous-events previous-events--form">
                 <summary class="previous-events__toggle" data-i18n-sr="Prethodni događaji" data-i18n-en="Previous events">Prethodni događaji</summary>
                 <div class="previous-events__list">
+                  <div class="concert-row concert-row--past" data-concert-id="2026-07-10">
+                    <div class="concert-booking__head">
+                      <label class="concert-booking__check">
+                        <input type="checkbox" value="10. jul 2026 — Jazz pod zvezdama" disabled />
+                        <span class="concert-row__label-text">
+                          <span class="concert-row__title" data-i18n-sr="10. jul 2026 — Jazz pod zvezdama" data-i18n-en="10 Jul 2026 — Jazz under the stars">10. jul 2026 — Jazz pod zvezdama</span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+
                   <div class="concert-row concert-row--past" data-concert-id="2026-07-04">
                     <div class="concert-booking__head">
                       <label class="concert-booking__check">
