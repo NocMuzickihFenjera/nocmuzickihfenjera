@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="sr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta name="description" content="Noć Muzičkih Fenjera — Beograd, Konak kneginje Ljubice, i Novi Sad, Sinagoga." data-i18n-sr="Noć Muzičkih Fenjera — Beograd, Konak kneginje Ljubice, i Novi Sad, Sinagoga." data-i18n-en="Night of Musical Lanterns — Belgrade, Konak of Princess Ljubica, and Novi Sad, the Synagogue." />
+  <meta name="description" content="Noć Muzičkih Fenjera — intimno muzičko veče u srcu Beograda, Konak Kneginje Ljubice, Galerija pod svodovima." data-i18n-sr="Noć Muzičkih Fenjera — intimno muzičko veče u srcu Beograda, Konak Kneginje Ljubice, Galerija pod svodovima." data-i18n-en="Night of Musical Lanterns — an intimate musical evening in the heart of Belgrade, Konak of Princess Ljubica, vaulted gallery." />
   <title>Noć Muzičkih Fenjera</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -42,31 +42,67 @@
     </nav>
   </header>
 
-  <main class="splash splash--cities">
+  <main class="splash">
     <div class="splash__intro">
       <h1 class="splash__title" data-i18n-sr="Noć Muzičkih Fenjera" data-i18n-en="Night of Musical Lanterns">Noć Muzičkih Fenjera</h1>
-      <p class="splash__subtitle" data-i18n-sr="Izaberite grad" data-i18n-en="Choose a city">Izaberite grad</p>
+      <p class="splash__subtitle" data-i18n-sr="Konak Kneginje Ljubice — Galerija pod svodovima" data-i18n-en="Konak of Princess Ljubica — vaulted gallery">Konak Kneginje Ljubice — Galerija pod svodovima</p>
     </div>
 
-    <div class="city-choice">
-      <a class="city-card" href="beograd.html">
-        <span class="city-card__figure">
-          <img class="city-card__photo" src="assets/images/venues/konak-beli.png" alt="" />
-          <span class="city-card__echo" aria-hidden="true"><img src="assets/images/venues/konak-beli.png" alt="" /></span>
-        </span>
-        <span class="city-card__city" data-i18n-sr="Beograd" data-i18n-en="Belgrade">Beograd</span>
-        <span class="city-card__place" data-i18n-sr="Konak kneginje Ljubice" data-i18n-en="Konak of Princess Ljubica">Konak kneginje Ljubice</span>
-      </a>
-      <a class="city-card" href="novi-sad.html">
-        <span class="city-card__figure">
-          <img class="city-card__photo" src="assets/images/venues/sinagoga-beli.png" alt="" />
-          <span class="city-card__echo" aria-hidden="true"><img src="assets/images/venues/sinagoga-beli.png" alt="" /></span>
-        </span>
-        <span class="city-card__city" data-i18n-sr="Novi Sad" data-i18n-en="Novi Sad">Novi Sad</span>
-        <span class="city-card__place" data-i18n-sr="Sinagoga" data-i18n-en="Synagogue">Sinagoga</span>
-      </a>
+    <div class="splash__stage">
+      <div class="splash__art" aria-hidden="true">
+      <!-- Luksuzni dekorativni fenjer (SVG) -->
+      <svg class="lantern-svg" viewBox="0 0 280 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <defs>
+          <linearGradient id="l-brass" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#c9a05c" />
+            <stop offset="35%" stop-color="#f0d18a" />
+            <stop offset="65%" stop-color="#8a6a38" />
+            <stop offset="100%" stop-color="#5c4520" />
+          </linearGradient>
+          <linearGradient id="l-glass" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="rgba(40,36,32,0.85)" />
+            <stop offset="45%" stop-color="rgba(90,78,58,0.35)" />
+            <stop offset="100%" stop-color="rgba(30,26,22,0.9)" />
+          </linearGradient>
+          <radialGradient id="l-flame" cx="50%" cy="55%" r="55%">
+            <stop offset="0%" stop-color="#fff4d4" />
+            <stop offset="35%" stop-color="#ffc56d" />
+            <stop offset="70%" stop-color="#d4832a" />
+            <stop offset="100%" stop-color="rgba(80,40,10,0)" />
+          </radialGradient>
+          <filter id="l-glow" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="6" result="b" />
+            <feMerge>
+              <feMergeNode in="b" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <!-- Lanac -->
+        <path fill="url(#l-brass)" d="M134 8h12v32h-12zM138 40a6 6 0 1 0 12 0 6 6 0 0 0-12 0zm-8 8a6 6 0 1 0 12 0 6 6 0 0 0-12 0z" />
+        <ellipse cx="140" cy="6" rx="10" ry="5" fill="#6b5228" />
+        <!-- Kuka -->
+        <path fill="url(#l-brass)" d="M120 52h40l-4 18h-32z" />
+        <!-- Gornji vijenac -->
+        <path fill="url(#l-brass)" d="M70 70h140l12 28H58z" />
+        <!-- Stakleni kućište -->
+        <path fill="url(#l-glass)" stroke="url(#l-brass)" stroke-width="3" d="M78 108h124v200H78z" opacity="0.92" />
+        <!-- Panel linije -->
+        <path stroke="rgba(200,170,120,0.25)" stroke-width="1.5" d="M108 108v200M140 108v200M172 108v200" />
+        <!-- Unutrašnje svetlo -->
+        <ellipse cx="140" cy="210" rx="48" ry="72" fill="url(#l-flame)" filter="url(#l-glow)" class="lantern-svg__pulse" />
+        <!-- Donji prsten -->
+        <path fill="none" stroke="url(#l-brass)" stroke-width="4" d="M72 312h136" />
+        <!-- Baza -->
+        <path fill="url(#l-brass)" d="M62 318h156l-10 36H72z" />
+        <path fill="#4a3820" d="M86 354h108l-6 20H92z" />
+        <!-- Kratki ornament -->
+        <circle cx="140" cy="330" r="6" fill="#2a2014" stroke="#c9a05c" stroke-width="1.5" />
+      </svg>
+      </div>
+
+      <a class="btn btn--primary splash__cta" href="programi.html" data-i18n-sr="Karte" data-i18n-en="Tickets">Karte</a>
     </div>
-    <p class="splash__credit" data-i18n-sr="Siluete prema fotografijama: Konak kneginje Ljubice — Pudelek; Sinagoga u Novom Sadu — PetarM. CC BY-SA 3.0, Wikimedia Commons." data-i18n-en="Silhouettes after photographs: Konak of Princess Ljubica — Pudelek; Novi Sad Synagogue — PetarM. CC BY-SA 3.0, Wikimedia Commons.">Siluete prema fotografijama: Konak kneginje Ljubice — Pudelek; Sinagoga u Novom Sadu — PetarM. CC BY-SA 3.0, Wikimedia Commons.</p>
   </main>
 
   <footer class="site-footer">
