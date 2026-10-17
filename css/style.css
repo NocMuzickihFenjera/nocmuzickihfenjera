@@ -1365,13 +1365,11 @@ main {
   align-self: center;
   color: #f0d7a0;
   text-decoration: none;
-  filter: drop-shadow(0 0 14px rgba(228, 165, 74, 0.28));
-  transition: transform 0.35s var(--ease), filter 0.35s var(--ease);
+  transition: transform 0.35s var(--ease);
 }
 
 .lantern-cta:hover {
   transform: translateY(-4px);
-  filter: drop-shadow(0 0 22px rgba(255, 214, 140, 0.72));
 }
 
 .lantern-cta__svg {
@@ -1379,6 +1377,12 @@ main {
   width: 100%;
   height: auto;
   overflow: visible;
+  filter: drop-shadow(0 0 14px rgba(228, 165, 74, 0.28));
+  transition: filter 0.35s var(--ease);
+}
+
+.lantern-cta:hover .lantern-cta__svg {
+  filter: drop-shadow(0 0 22px rgba(255, 214, 140, 0.72));
 }
 
 .lantern-cta__glow {
@@ -1400,13 +1404,16 @@ main {
 }
 
 .lantern-cta__label {
-  margin-top: 0.35rem;
+  position: static;
+  display: block;
+  margin-top: 0.85rem;
   font-family: var(--font-display);
-  font-size: clamp(0.78rem, 1.25vw, 0.98rem);
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
   font-weight: 500;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   line-height: 1;
+  text-align: center;
 }
 
 @keyframes lantern-shimmer {
