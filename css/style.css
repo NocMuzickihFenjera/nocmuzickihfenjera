@@ -1324,6 +1324,119 @@ main {
   }
 }
 
+.city-choice {
+  width: min(1080px, 100%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: end;
+}
+
+.city-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.city-card__figure {
+  position: relative;
+  width: 100%;
+  height: min(42vh, 380px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: clamp(2.4rem, 6vh, 3.6rem);
+}
+
+.city-card__photo,
+.city-card__echo img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 0 26px rgba(255, 244, 220, 0.16));
+}
+
+.city-card__echo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 46%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+  transform: scaleY(-1);
+  transform-origin: top center;
+  opacity: 0.42;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent 78%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent 78%);
+}
+
+.city-card__echo img {
+  filter: none;
+}
+
+.city-card__city {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3vw, 2.35rem);
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+}
+
+.city-card__place {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.city-card:hover .city-card__photo,
+.city-card:focus-visible .city-card__photo {
+  filter: drop-shadow(0 0 34px rgba(228, 165, 74, 0.38));
+}
+
+.city-card:hover .city-card__city,
+.city-card:focus-visible .city-card__city {
+  color: #fff8f0;
+}
+
+.splash__credit {
+  margin: 0.5rem 0 0;
+  max-width: 42rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  color: rgba(168, 159, 148, 0.72);
+}
+
+.venue-hero {
+  width: min(520px, 88vw);
+  height: auto;
+  max-height: min(52vh, 460px);
+  object-fit: contain;
+  filter: drop-shadow(0 0 28px rgba(255, 244, 220, 0.16));
+}
+
+@media (max-width: 720px) {
+  .city-choice {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .city-card__figure {
+    height: min(30vh, 240px);
+    margin-bottom: 2.2rem;
+  }
+}
+
 .btn--dive {
   flex-direction: column;
   gap: 0.35rem;
