@@ -1511,24 +1511,48 @@ main {
   .splash {
     justify-content: flex-start;
     gap: 1.15rem;
-    padding: 4.6rem 0.85rem 2.5rem;
+    padding: 4.6rem 0.7rem 2.5rem;
   }
 
   .venue-pick {
-    gap: 0.85rem;
+    width: 100%;
+    gap: 0.35rem;
+  }
+
+  .venue-pick__card {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    gap: 0.4rem;
   }
 
   .venue-pick__card img {
-    height: min(22vh, 150px);
+    height: min(18vh, 120px);
+  }
+
+  .venue-pick__city {
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+  }
+
+  .venue-pick__place {
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    line-height: 1.25;
   }
 
   .ticket-cta {
-    width: min(58vw, 11.5rem);
+    width: 5.5rem;
+  }
+
+  .ticket-cta__svg {
+    transform: rotate(-8deg);
   }
 
   .ticket-cta__label {
-    letter-spacing: 0.12em;
-    font-size: 0.72rem;
+    margin-top: 0.45rem;
+    letter-spacing: 0.08em;
+    font-size: 0.68rem;
   }
 }
 
