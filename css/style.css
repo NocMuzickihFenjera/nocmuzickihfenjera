@@ -23,6 +23,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -34,6 +36,7 @@ body {
   line-height: 1.65;
   color: var(--text);
   background: var(--bg-deep);
+  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -1217,6 +1220,9 @@ main {
 .splash {
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -1339,16 +1345,21 @@ main {
 .splash__logo {
   margin: 0;
   width: min(920px, 100%);
+  max-width: 100%;
+  min-width: 0;
 }
 
 .splash__logo img {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: auto;
 }
 
 .venue-pick {
   width: min(1120px, 100%);
+  max-width: 100%;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1422,6 +1433,7 @@ main {
 .venue-pick__card img {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: min(28vh, 230px);
   object-fit: contain;
   object-position: center bottom;
@@ -1512,7 +1524,6 @@ main {
     justify-content: flex-start;
     gap: 1.15rem;
     padding: 4.6rem 0.55rem 2.5rem;
-    overflow-x: clip;
   }
 
   .venue-pick {
@@ -1548,6 +1559,7 @@ main {
   .ticket-cta {
     width: 26vw;
     max-width: 7.2rem;
+    min-width: 0;
   }
 
   .ticket-cta__svg {
