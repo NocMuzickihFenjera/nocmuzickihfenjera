@@ -1355,13 +1355,41 @@ main {
   gap: clamp(0.75rem, 2.5vw, 2rem);
 }
 
-.splash__cta--orb {
-  width: clamp(5.6rem, 11vw, 7.4rem);
-  height: clamp(5.6rem, 11vw, 7.4rem);
-  padding: 0;
+.lantern-cta {
+  position: relative;
+  display: block;
+  width: clamp(5.5rem, 9vw, 7.1rem);
   flex: 0 0 auto;
-  border-radius: 50%;
-  letter-spacing: 0.08em;
+  align-self: center;
+  color: #e8c27a;
+  text-decoration: none;
+  filter: drop-shadow(0 0 16px rgba(228, 165, 74, 0.28));
+  transition: color 0.3s var(--ease), filter 0.3s var(--ease), transform 0.35s var(--ease);
+}
+
+.lantern-cta:hover {
+  color: #fff6df;
+  transform: translateY(-4px);
+  filter: drop-shadow(0 0 28px rgba(228, 165, 74, 0.5));
+}
+
+.lantern-cta__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.lantern-cta__label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 47%;
+  font-family: var(--font-display);
+  font-size: clamp(0.78rem, 1.25vw, 0.98rem);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1;
 }
 
 .venue-pick__card {
@@ -1469,6 +1497,15 @@ main {
 
   .venue-pick__card img {
     height: min(22vh, 150px);
+  }
+
+  .lantern-cta {
+    width: 4.35rem;
+  }
+
+  .lantern-cta__label {
+    letter-spacing: 0.12em;
+    font-size: 0.68rem;
   }
 }
 
