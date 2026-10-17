@@ -46,8 +46,21 @@
     <section class="section section--concerts section--page-top">
       <div class="section__container">
         <h1 class="section__title" data-i18n-sr="Programi" data-i18n-en="Program">Programi</h1>
-        <p class="section__intro" data-i18n-html-sr="Sezona 2026. – Osigurajte svoja mesta na vreme<br>Svi koncerti se održavaju u autentičnom ambijentu Konaka kneginje Ljubice.<br>Početak: 19:00 č" data-i18n-html-en="Season 2026 – Secure your seats in time.<br>All concerts are held in the authentic ambience of the Konak of Princess Ljubica.<br>Starts: 19:00 h">Sezona 2026. – Osigurajte svoja mesta na vreme<br>Svi koncerti se održavaju u autentičnom ambijentu Konaka kneginje Ljubice.<br>Početak: 19:00 č</p>
+        <div class="city-switch" role="tablist" aria-label="Grad" data-i18n-aria-label-sr="Grad" data-i18n-aria-label-en="City">
+          <button class="city-switch__btn is-active" type="button" role="tab" data-city="beograd" aria-selected="true">
+            <img src="assets/images/venues/konak.png" alt="" />
+            <span data-i18n-sr="Beograd" data-i18n-en="Belgrade">Beograd</span>
+          </button>
+          <button class="city-switch__btn" type="button" role="tab" data-city="novi-sad" aria-selected="false">
+            <img src="assets/images/venues/sinagoga.png" alt="" />
+            <span data-i18n-sr="Novi Sad" data-i18n-en="Novi Sad">Novi Sad</span>
+          </button>
+        </div>
 
+        <p class="section__intro" data-city-copy="beograd" data-i18n-html-sr="Sezona 2026. – Osigurajte svoja mesta na vreme<br>Svi koncerti se održavaju u autentičnom ambijentu Konaka kneginje Ljubice.<br>Početak: 19:00 č" data-i18n-html-en="Season 2026 – Secure your seats in time.<br>All concerts are held in the authentic ambience of the Konak of Princess Ljubica.<br>Starts: 19:00 h">Sezona 2026. – Osigurajte svoja mesta na vreme<br>Svi koncerti se održavaju u autentičnom ambijentu Konaka kneginje Ljubice.<br>Početak: 19:00 č</p>
+        <p class="section__intro" data-city-copy="novi-sad" hidden data-i18n-html-sr="Koncerti u Sinagogi u Novom Sadu." data-i18n-html-en="Concerts at the Synagogue in Novi Sad.">Koncerti u Sinagogi u Novom Sadu.</p>
+
+        <div class="city-panel" data-city-panel="beograd">
         <ul class="concert-list concert-list--program">
           <li class="concert-card">
             <div class="concert-card__date">
@@ -349,6 +362,26 @@
             </li>
           </ul>
         </details>
+        </div>
+
+        <div class="city-panel" data-city-panel="novi-sad" hidden>
+          <ul class="concert-list concert-list--program">
+            <li class="concert-card">
+              <div class="concert-card__date">
+                <span class="concert-card__day">25</span>
+                <span class="concert-card__month" data-i18n-sr="nov" data-i18n-en="nov">nov</span>
+                <span class="concert-card__year">2026</span>
+              </div>
+              <div class="concert-card__body">
+                <h2 class="concert-card__heading" data-i18n-sr="Svetski i Yu rock hitovi — Klavirski spektakl" data-i18n-en="World and Yu rock hits — Piano spectacle">Svetski i Yu rock hitovi — Klavirski spektakl</h2>
+                <p class="concert-card__time" data-i18n-sr="Početak: 20:00" data-i18n-en="Starts: 20:00">Početak: 20:00</p>
+                <p class="concert-card__price" data-i18n-sr="Cena: 1200 / 2000 RSD" data-i18n-en="Price: 1200 / 2000 RSD">Cena: 1200 / 2000 RSD</p>
+              </div>
+              <a class="concert-card__cta" href="https://tickets.rs/event/noc_muzickih_fenjera_svetski_i_yu_rock_hitovi_klavirski_spektakl_28740" target="_blank" rel="noopener noreferrer" data-i18n-sr="Karte" data-i18n-en="Tickets">Karte</a>
+            </li>
+          </ul>
+        </div>
+
         <div class="pricing-strip">
           <p class="pricing-strip__lead" data-i18n-sr="Istaknute cene i način rezervacije" data-i18n-en="Highlighted prices and reservation method">Istaknute cene i način rezervacije</p>
           <div class="pricing-strip__grid">
@@ -373,6 +406,32 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll(".city-switch__btn");
+      var panels = document.querySelectorAll("[data-city-panel]");
+      var copies = document.querySelectorAll("[data-city-copy]");
+      function show(city) {
+        buttons.forEach(function (btn) {
+          var on = btn.getAttribute("data-city") === city;
+          btn.classList.toggle("is-active", on);
+          btn.setAttribute("aria-selected", on ? "true" : "false");
+        });
+        panels.forEach(function (panel) {
+          panel.hidden = panel.getAttribute("data-city-panel") !== city;
+        });
+        copies.forEach(function (copy) {
+          copy.hidden = copy.getAttribute("data-city-copy") !== city;
+        });
+      }
+      buttons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          show(btn.getAttribute("data-city"));
+        });
+      });
+      if (location.hash === "#novi-sad") show("novi-sad");
+    })();
+  </script>
 </body>
 </html>
  

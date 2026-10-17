@@ -43,54 +43,23 @@
   </header>
 
   <main class="splash">
-    <div class="splash__intro">
-      <h1 class="splash__title" data-i18n-sr="Noć Muzičkih Fenjera" data-i18n-en="Night of Musical Lanterns">Noć Muzičkih Fenjera</h1>
-      <p class="splash__subtitle" data-i18n-sr="Konak Kneginje Ljubice — Galerija pod svodovima" data-i18n-en="Konak of Princess Ljubica — vaulted gallery">Konak Kneginje Ljubice — Galerija pod svodovima</p>
-    </div>
+    <h1 class="splash__logo">
+      <img src="assets/images/logo-fenjeri.png" alt="Noć Muzičkih Fenjera" data-i18n-alt-sr="Noć Muzičkih Fenjera" data-i18n-alt-en="Night of Musical Lanterns" />
+    </h1>
 
     <nav class="venue-pick" aria-label="Gradovi" data-i18n-aria-label-sr="Gradovi" data-i18n-aria-label-en="Cities">
-      <a class="venue-pick__card" href="programi.html">
+      <a class="venue-pick__card" href="programi.html#beograd">
         <img src="assets/images/venues/konak.png" alt="" width="960" height="540" />
-        <span data-i18n-sr="Konak kneginje Ljubice" data-i18n-en="Konak of Princess Ljubica">Konak kneginje Ljubice</span>
+        <span class="venue-pick__city" data-i18n-sr="Beograd" data-i18n-en="Belgrade">Beograd</span>
+        <span class="venue-pick__place" data-i18n-sr="Konak kneginje Ljubice" data-i18n-en="Konak of Princess Ljubica">Konak kneginje Ljubice</span>
       </a>
-      <a class="venue-pick__card" href="programi-novi-sad.html">
+      <a class="btn btn--primary splash__cta splash__cta--orb" href="programi.html" data-i18n-sr="Karte" data-i18n-en="Tickets">Karte</a>
+      <a class="venue-pick__card" href="programi.html#novi-sad">
         <img src="assets/images/venues/sinagoga.png" alt="" width="800" height="900" />
-        <span data-i18n-sr="Sinagoga" data-i18n-en="Synagogue">Sinagoga</span>
+        <span class="venue-pick__city" data-i18n-sr="Novi Sad" data-i18n-en="Novi Sad">Novi Sad</span>
+        <span class="venue-pick__place" data-i18n-sr="Sinagoga" data-i18n-en="Synagogue">Sinagoga</span>
       </a>
     </nav>
-
-    <div class="splash__stage">
-      <div class="stitch-row" aria-hidden="true">
-        <svg class="stitch-lantern" viewBox="0 0 64 108" xmlns="http://www.w3.org/2000/svg">
-          <path d="M32 2v10M26 6h12" fill="none" stroke="currentColor" stroke-width="1" />
-          <path d="M22 16h20l3 6H19z" fill="none" stroke="currentColor" stroke-width="1" />
-          <path d="M20 24h24c2 16 2 40 0 56H20c-2-16-2-40 0-56z" fill="none" stroke="currentColor" stroke-width="1" />
-          <path d="M26 24v56M32 24v56M38 24v56" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.7" />
-          <path d="M24 36c5 3 11 3 16 0M24 50c5 3 11 3 16 0M24 64c5 3 11 3 16 0" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.55" />
-          <circle class="stitch-lantern__flame" cx="32" cy="48" r="3.2" fill="currentColor" />
-          <path d="M18 82h28l-3 8H21z" fill="none" stroke="currentColor" stroke-width="1" />
-        </svg>
-        <svg class="stitch-lantern stitch-lantern--mid" viewBox="0 0 64 108" xmlns="http://www.w3.org/2000/svg">
-          <path d="M32 2v10M26 6h12" fill="none" stroke="currentColor" stroke-width="1" />
-          <path d="M22 16h20l3 6H19z" fill="none" stroke="currentColor" stroke-width="1" />
-          <path d="M20 24h24c2 16 2 40 0 56H20c-2-16-2-40 0-56z" fill="none" stroke="currentColor" stroke-width="1" />
-          <path d="M26 24v56M32 24v56M38 24v56" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.7" />
-          <path d="M24 36c5 3 11 3 16 0M24 50c5 3 11 3 16 0M24 64c5 3 11 3 16 0" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.55" />
-          <circle class="stitch-lantern__flame" cx="32" cy="48" r="3.2" fill="currentColor" />
-          <path d="M18 82h28l-3 8H21z" fill="none" stroke="currentColor" stroke-width="1" />
-        </svg>
-        <svg class="stitch-lantern" viewBox="0 0 64 108" xmlns="http://www.w3.org/2000/svg">
-          <path d="M32 2v10M26 6h12" fill="none" stroke="currentColor" stroke-width="1" />
-          <path d="M22 16h20l3 6H19z" fill="none" stroke="currentColor" stroke-width="1" />
-          <path d="M20 24h24c2 16 2 40 0 56H20c-2-16-2-40 0-56z" fill="none" stroke="currentColor" stroke-width="1" />
-          <path d="M26 24v56M32 24v56M38 24v56" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.7" />
-          <path d="M24 36c5 3 11 3 16 0M24 50c5 3 11 3 16 0M24 64c5 3 11 3 16 0" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.55" />
-          <circle class="stitch-lantern__flame" cx="32" cy="48" r="3.2" fill="currentColor" />
-          <path d="M18 82h28l-3 8H21z" fill="none" stroke="currentColor" stroke-width="1" />
-        </svg>
-      </div>
-      <a class="btn btn--primary splash__cta" href="programi.html" data-i18n-sr="Karte" data-i18n-en="Tickets">Karte</a>
-    </div>
   </main>
 
   <footer class="site-footer">

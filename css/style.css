@@ -1336,12 +1336,32 @@ main {
   line-height: 1.5;
 }
 
-.venue-pick {
+.splash__logo {
+  margin: 0;
   width: min(920px, 100%);
+}
+
+.splash__logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.venue-pick {
+  width: min(980px, 100%);
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  gap: clamp(1.25rem, 4vw, 3.5rem);
+  gap: clamp(0.75rem, 2.5vw, 2rem);
+}
+
+.splash__cta--orb {
+  width: clamp(5.6rem, 11vw, 7.4rem);
+  height: clamp(5.6rem, 11vw, 7.4rem);
+  padding: 0;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  letter-spacing: 0.08em;
 }
 
 .venue-pick__card {
@@ -1363,17 +1383,78 @@ main {
   filter: drop-shadow(0 0 18px rgba(228, 165, 74, 0.12));
 }
 
-.venue-pick__card span {
+.venue-pick__city {
   font-family: var(--font-display);
-  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-size: clamp(1.45rem, 2.6vw, 2rem);
   font-weight: 600;
-  letter-spacing: 0.06em;
-  line-height: 1.2;
+  letter-spacing: 0.14em;
+  line-height: 1.1;
   text-align: center;
+  text-transform: uppercase;
   background: linear-gradient(135deg, #fff4d4 0%, #e4a54a 55%, #c9a05c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.venue-pick__place {
+  font-family: var(--font-display);
+  font-size: clamp(0.92rem, 1.5vw, 1.08rem);
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: var(--accent);
+}
+
+.city-switch {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  margin: 0 0 1.75rem;
+}
+
+.city-switch__btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  width: min(180px, 38vw);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.45;
+}
+
+.city-switch__btn img {
+  width: 100%;
+  height: 92px;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.city-switch__btn.is-active {
+  opacity: 1;
+}
+
+.city-switch__btn.is-active span {
+  background: linear-gradient(135deg, #fff4d4 0%, #e4a54a 55%, #c9a05c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.city-switch__btn.is-active img {
+  filter: drop-shadow(0 0 16px rgba(228, 165, 74, 0.35));
+}
+
+.city-panel[hidden],
+.section__intro[hidden] {
+  display: none !important;
 }
 
 .venue-pick__card:hover img,
