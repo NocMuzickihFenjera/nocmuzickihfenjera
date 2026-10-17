@@ -1348,7 +1348,7 @@ main {
 }
 
 .venue-pick {
-  width: min(980px, 100%);
+  width: min(1120px, 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1359,7 +1359,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: clamp(7.5rem, 16vw, 10.5rem);
+  width: clamp(13rem, 28vw, 18rem);
   flex: 0 0 auto;
   align-self: center;
   color: #f0d7a0;
@@ -1371,14 +1371,15 @@ main {
   width: 100%;
   height: auto;
   overflow: visible;
-  transform: rotate(-8deg);
-  filter: drop-shadow(0 0 12px rgba(228, 165, 74, 0.22));
-  transition: transform 0.35s var(--ease), filter 0.35s var(--ease);
+  transform: rotate(-16deg);
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.35));
+  transition: transform 0.45s var(--ease), filter 0.45s var(--ease);
 }
 
-.ticket-cta:hover .ticket-cta__svg {
-  transform: rotate(-2deg) translateY(-3px);
-  filter: drop-shadow(0 0 18px rgba(255, 214, 140, 0.55));
+.ticket-cta:hover .ticket-cta__svg,
+.ticket-cta:focus-visible .ticket-cta__svg {
+  transform: rotate(0deg) translateY(-10px) scale(1.06);
+  filter: drop-shadow(0 16px 22px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 22px rgba(255, 214, 140, 0.55));
 }
 
 .ticket-cta__sheen {
@@ -1413,7 +1414,7 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 0.65rem;
-  width: min(46%, 420px);
+  width: min(34%, 300px);
   color: inherit;
   text-decoration: none;
 }
@@ -1516,7 +1517,7 @@ main {
   }
 
   .ticket-cta {
-    width: 6.4rem;
+    width: min(58vw, 11.5rem);
   }
 
   .ticket-cta__label {
