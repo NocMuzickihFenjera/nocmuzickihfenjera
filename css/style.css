@@ -1355,56 +1355,42 @@ main {
   gap: clamp(0.75rem, 2.5vw, 2rem);
 }
 
-.lantern-cta {
-  position: relative;
+.ticket-cta {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: clamp(4.6rem, 8vw, 6.4rem);
+  width: clamp(7.5rem, 16vw, 10.5rem);
   flex: 0 0 auto;
   align-self: center;
   color: #f0d7a0;
   text-decoration: none;
-  transition: transform 0.35s var(--ease);
 }
 
-.lantern-cta:hover {
-  transform: translateY(-4px);
-}
-
-.lantern-cta__svg {
+.ticket-cta__svg {
   display: block;
   width: 100%;
   height: auto;
   overflow: visible;
-  filter: drop-shadow(0 0 14px rgba(228, 165, 74, 0.28));
-  transition: filter 0.35s var(--ease);
+  transform: rotate(-8deg);
+  filter: drop-shadow(0 0 12px rgba(228, 165, 74, 0.22));
+  transition: transform 0.35s var(--ease), filter 0.35s var(--ease);
 }
 
-.lantern-cta:hover .lantern-cta__svg {
-  filter: drop-shadow(0 0 22px rgba(255, 214, 140, 0.72));
+.ticket-cta:hover .ticket-cta__svg {
+  transform: rotate(-2deg) translateY(-3px);
+  filter: drop-shadow(0 0 18px rgba(255, 214, 140, 0.55));
 }
 
-.lantern-cta__glow {
-  transform-origin: center;
-  transition: opacity 0.3s var(--ease);
-}
-
-.lantern-cta__sheen {
+.ticket-cta__sheen {
   opacity: 0;
   pointer-events: none;
 }
 
-.lantern-cta:hover .lantern-cta__glow {
-  animation: lantern-shimmer 1.15s ease-in-out infinite;
+.ticket-cta:hover .ticket-cta__sheen {
+  animation: ticket-sheen 1.2s ease-in-out infinite;
 }
 
-.lantern-cta:hover .lantern-cta__sheen {
-  animation: lantern-sheen 1.35s ease-in-out infinite;
-}
-
-.lantern-cta__label {
-  position: static;
+.ticket-cta__label {
   display: block;
   margin-top: 0.85rem;
   font-family: var(--font-display);
@@ -1416,16 +1402,10 @@ main {
   text-align: center;
 }
 
-@keyframes lantern-shimmer {
-  0%,
-  100% { opacity: 0.55; }
-  50% { opacity: 1; }
-}
-
-@keyframes lantern-sheen {
-  0% { opacity: 0; transform: translateX(-6px); }
-  35% { opacity: 0.85; }
-  100% { opacity: 0; transform: translateX(52px); }
+@keyframes ticket-sheen {
+  0% { opacity: 0; transform: translateX(-8px); }
+  35% { opacity: 0.9; }
+  100% { opacity: 0; transform: translateX(180px); }
 }
 
 .venue-pick__card {
@@ -1535,13 +1515,13 @@ main {
     height: min(22vh, 150px);
   }
 
-  .lantern-cta {
-    width: 3.7rem;
+  .ticket-cta {
+    width: 6.4rem;
   }
 
-  .lantern-cta__label {
+  .ticket-cta__label {
     letter-spacing: 0.12em;
-    font-size: 0.68rem;
+    font-size: 0.72rem;
   }
 }
 

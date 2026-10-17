@@ -53,43 +53,32 @@
         <span class="venue-pick__city" data-i18n-sr="Beograd" data-i18n-en="Belgrade">Beograd</span>
         <span class="venue-pick__place" data-i18n-sr="Konak kneginje Ljubice" data-i18n-en="Konak of Princess Ljubica">Konak kneginje Ljubice</span>
       </a>
-      <a class="lantern-cta" href="programi.html">
-        <svg class="lantern-cta__svg" viewBox="0 0 120 188" aria-hidden="true">
+      <a class="ticket-cta" href="programi.html">
+        <svg class="ticket-cta__svg" viewBox="0 0 210 96" aria-hidden="true">
           <defs>
-            <radialGradient id="lanternGlow" cx="50%" cy="58%" r="52%">
-              <stop offset="0%" stop-color="#ffe7a8" stop-opacity="0.7" />
-              <stop offset="48%" stop-color="#e4a54a" stop-opacity="0.22" />
-              <stop offset="100%" stop-color="#e4a54a" stop-opacity="0" />
-            </radialGradient>
-            <linearGradient id="lanternGold" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="ticketGold" x1="0" y1="0" x2="1" y2="1">
               <stop offset="0%" stop-color="#fff6d2" />
-              <stop offset="42%" stop-color="#f0c15a" />
+              <stop offset="48%" stop-color="#f0c15a" />
               <stop offset="100%" stop-color="#c9842e" />
             </linearGradient>
-            <linearGradient id="lanternPane" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#fffdf6" />
-              <stop offset="100%" stop-color="#f6d48a" />
-            </linearGradient>
-            <linearGradient id="lanternSheen" x1="0" y1="0" x2="1" y2="0">
+            <linearGradient id="ticketSheen" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stop-color="#fff" stop-opacity="0" />
-              <stop offset="50%" stop-color="#fff" stop-opacity="0.9" />
+              <stop offset="50%" stop-color="#fff" stop-opacity="0.55" />
               <stop offset="100%" stop-color="#fff" stop-opacity="0" />
             </linearGradient>
+            <clipPath id="ticketClip">
+              <path d="M18 8h174a8 8 0 0 1 8 8v20a9 9 0 0 0 0 18v26a8 8 0 0 1-8 8H18a8 8 0 0 1-8-8V54a9 9 0 0 0 0-18V16a8 8 0 0 1 8-8z" />
+            </clipPath>
           </defs>
-          <ellipse class="lantern-cta__glow" cx="60" cy="112" rx="48" ry="58" fill="url(#lanternGlow)" />
-          <path d="M60 6v24" fill="none" stroke="#f3d27a" stroke-width="1.3" />
-          <circle cx="60" cy="33" r="3.1" fill="none" stroke="#f6d78a" stroke-width="1.3" />
-          <path d="M60 40c-12 9-18 20-18 28h36c0-8-6-19-18-28z" fill="url(#lanternGold)" />
-          <path d="M40 68h40v7H40z" fill="url(#lanternGold)" />
-          <path d="M36 75h48l5 64H31z" fill="url(#lanternGold)" />
-          <path d="M44 84c0 0 2-6 6-6s6 6 6 6v30c0 7-6 10-6 10s-6-3-6-10z" fill="url(#lanternPane)" />
-          <path d="M54 80c0 0 2-7 6-7s6 7 6 7v40c0 8-6 12-6 12s-6-4-6-12z" fill="url(#lanternPane)" />
-          <path d="M64 84c0 0 2-6 6-6s6 6 6 6v30c0 7-6 10-6 10s-6-3-6-10z" fill="url(#lanternPane)" />
-          <path d="M31 139h58l-4 9H35z" fill="url(#lanternGold)" />
-          <path d="M40 148h40l-3 6H43z" fill="#e8b04a" />
-          <rect class="lantern-cta__sheen" x="28" y="38" width="16" height="120" fill="url(#lanternSheen)" />
+          <path d="M18 8h174a8 8 0 0 1 8 8v20a9 9 0 0 0 0 18v26a8 8 0 0 1-8 8H18a8 8 0 0 1-8-8V54a9 9 0 0 0 0-18V16a8 8 0 0 1 8-8z" fill="#141820" stroke="url(#ticketGold)" stroke-width="1.6" />
+          <path d="M52 16v64" fill="none" stroke="#e4a54a" stroke-width="1.1" stroke-dasharray="2.2 3.4" opacity="0.85" />
+          <path d="M66 30h78" fill="none" stroke="#f0d7a0" stroke-width="2.2" stroke-linecap="round" opacity="0.9" />
+          <path d="M66 44h56" fill="none" stroke="#e4a54a" stroke-width="1.4" stroke-linecap="round" opacity="0.55" />
+          <path d="M66 56h40" fill="none" stroke="#e4a54a" stroke-width="1.4" stroke-linecap="round" opacity="0.4" />
+          <path d="M168 36l2.2 4.6 5 .7-3.6 3.5.9 5.1-4.5-2.4-4.5 2.4.9-5.1-3.6-3.5 5-.7z" fill="#f0c15a" />
+          <rect class="ticket-cta__sheen" x="0" y="0" width="36" height="96" fill="url(#ticketSheen)" clip-path="url(#ticketClip)" />
         </svg>
-        <span class="lantern-cta__label" data-i18n-sr="Karte" data-i18n-en="Tickets">Karte</span>
+        <span class="ticket-cta__label" data-i18n-sr="Karte" data-i18n-en="Tickets">Karte</span>
       </a>
       <a class="venue-pick__card" href="programi.html#novi-sad">
         <img src="assets/images/venues/sinagoga.png" alt="" width="800" height="900" />
