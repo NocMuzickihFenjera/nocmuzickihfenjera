@@ -103,7 +103,19 @@
             <legend data-i18n-sr="Odaberi koncert(e)" data-i18n-en="Choose concert(s)">Odaberi koncert(e)</legend>
             <p class="contact-form__hint" data-i18n-sr="Označite koncert i unesite broj karata (standard ili povlašćene)." data-i18n-en="Select a concert and enter ticket counts (standard or discounted).">Označite koncert i unesite broj karata (standard ili povlašćene).</p>
 
+            <div class="city-switch" role="tablist" aria-label="Grad" data-i18n-aria-label-sr="Grad" data-i18n-aria-label-en="City">
+              <button class="city-switch__btn is-active" type="button" role="tab" data-city="beograd" aria-selected="true">
+                <img src="assets/images/venues/konak.png" alt="" />
+                <span data-i18n-sr="Beograd" data-i18n-en="Belgrade">Beograd</span>
+              </button>
+              <button class="city-switch__btn" type="button" role="tab" data-city="novi-sad" aria-selected="false">
+                <img src="assets/images/venues/sinagoga.png" alt="" />
+                <span data-i18n-sr="Novi Sad" data-i18n-en="Novi Sad">Novi Sad</span>
+              </button>
+            </div>
+
             <div class="contact-form__checkboxes concert-rows" id="concert-bookings">
+              <div class="city-panel" data-city-panel="beograd">
               <div class="concert-row" data-concert-id="2026-10-23">
                 <div class="concert-booking__head">
                   <label class="concert-booking__check">
@@ -397,6 +409,30 @@
                   </div>
                 </div>
               </details>
+              </div>
+
+              <div class="city-panel" data-city-panel="novi-sad" hidden>
+                <div class="concert-row" data-concert-id="2026-11-25">
+                  <div class="concert-booking__head">
+                    <label class="concert-booking__check">
+                      <input type="checkbox" value="25. nov 2026 — Svetski i Yu rock hitovi — Klavirski spektakl — Sinagoga, Novi Sad — 20:00" />
+                      <span class="concert-row__label-text">
+                        <span class="concert-row__title" data-i18n-sr="25. nov 2026 — Svetski i Yu rock hitovi — Klavirski spektakl — Sinagoga, Novi Sad — 20:00" data-i18n-en="25 Nov 2026 — World and Yu rock hits — Piano spectacle — Synagogue, Novi Sad — 20:00">25. nov 2026 — Svetski i Yu rock hitovi — Klavirski spektakl — Sinagoga, Novi Sad — 20:00</span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="concert-booking__tickets">
+                    <label>
+                      <span class="concert-row__qty-label" data-i18n-sr="Standardna karta" data-i18n-en="Standard ticket">Standardna Karta</span>
+                      <input type="number" class="ticket-input--standard" min="0" step="1" value="0" />
+                    </label>
+                    <label>
+                      <span class="concert-row__qty-label" data-i18n-sr="Povlašćena (mlađi od 26 i 65+)" data-i18n-en="Discounted (under 26 and 65+)">Povlašćena (mlađi od 26 i 65+)</span>
+                      <input type="number" class="ticket-input--discount" min="0" step="1" value="0" />
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
           </fieldset>
 
@@ -426,6 +462,6 @@
     <p data-i18n-html-sr="© <span id='year'></span> Noć Muzičkih Fenjera · veče pod fenjerima" data-i18n-html-en="© <span id='year'></span> Night of Musical Lanterns · an evening under lanterns">© <span id="year"></span> Noć Muzičkih Fenjera · veče pod fenjerima</p>
   </footer>
 
-  <script src="js/main.js?v=form-ux"></script>
+  <script src="js/main.js?v=city-switch"></script>
 </body>
 </html>

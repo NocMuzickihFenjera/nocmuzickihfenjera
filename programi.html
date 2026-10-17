@@ -381,21 +381,6 @@
         </div>
 
         <div class="city-panel" data-city-panel="novi-sad" hidden>
-          <div class="pricing-strip">
-            <p class="pricing-strip__lead" data-i18n-sr="Istaknute cene i način rezervacije" data-i18n-en="Highlighted prices and reservation method">Istaknute cene i način rezervacije</p>
-            <div class="pricing-strip__grid">
-              <article class="pricing-pill">
-                <h2 data-i18n-sr="Po koncertu" data-i18n-en="Per concert">Po koncertu</h2>
-                <p data-i18n-sr="1200 RSD — mladji od 26 i 65+" data-i18n-en="1200 RSD — under 26 and 65+">1200 RSD — mladji od 26 i 65+</p>
-                <p data-i18n-sr="2000 RSD — standard" data-i18n-en="2000 RSD — standard">2000 RSD — standard</p>
-              </article>
-              <article class="pricing-pill">
-                <h2 data-i18n-sr="4 karte · 6000 RSD" data-i18n-en="4 tickets · 6000 RSD">4 karte · 6000 RSD</h2>
-                <p data-i18n-sr="Bilo koje 4 karte, standardna paket cena." data-i18n-en="Any 4 tickets, standard package price.">Bilo koje 4 karte, standardna paket cena.</p>
-              </article>
-            </div>
-            <p class="pricing-strip__note" data-i18n-sr="Karte za Novi Sad kupuju se preko tickets.rs. Koncert se održava u Sinagogi u Novom Sadu." data-i18n-en="Novi Sad tickets are bought via tickets.rs. The concert is held at the Synagogue in Novi Sad.">Karte za Novi Sad kupuju se preko tickets.rs. Koncert se održava u Sinagogi u Novom Sadu.</p>
-          </div>
           <ul class="concert-list concert-list--program">
             <li class="concert-card">
               <div class="concert-card__date">
@@ -411,6 +396,21 @@
               <a class="concert-card__cta" href="https://tickets.rs/event/noc_muzickih_fenjera_svetski_i_yu_rock_hitovi_klavirski_spektakl_28740" target="_blank" rel="noopener noreferrer" data-i18n-sr="Karte" data-i18n-en="Tickets">Karte</a>
             </li>
           </ul>
+          <div class="pricing-strip">
+            <p class="pricing-strip__lead" data-i18n-sr="Istaknute cene i način rezervacije" data-i18n-en="Highlighted prices and reservation method">Istaknute cene i način rezervacije</p>
+            <div class="pricing-strip__grid">
+              <article class="pricing-pill">
+                <h2 data-i18n-sr="Po koncertu" data-i18n-en="Per concert">Po koncertu</h2>
+                <p data-i18n-sr="1200 RSD — mladji od 26 i 65+" data-i18n-en="1200 RSD — under 26 and 65+">1200 RSD — mladji od 26 i 65+</p>
+                <p data-i18n-sr="2000 RSD — standard" data-i18n-en="2000 RSD — standard">2000 RSD — standard</p>
+              </article>
+              <article class="pricing-pill">
+                <h2 data-i18n-sr="4 karte · 6000 RSD" data-i18n-en="4 tickets · 6000 RSD">4 karte · 6000 RSD</h2>
+                <p data-i18n-sr="Bilo koje 4 karte, standardna paket cena." data-i18n-en="Any 4 tickets, standard package price.">Bilo koje 4 karte, standardna paket cena.</p>
+              </article>
+            </div>
+            <p class="pricing-strip__note" data-i18n-sr="Karte za Novi Sad kupuju se preko tickets.rs. Koncert se održava u Sinagogi u Novom Sadu." data-i18n-en="Novi Sad tickets are bought via tickets.rs. The concert is held at the Synagogue in Novi Sad.">Karte za Novi Sad kupuju se preko tickets.rs. Koncert se održava u Sinagogi u Novom Sadu.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -420,33 +420,7 @@
     <p data-i18n-html-sr="© <span id='year'></span> Noć Muzičkih Fenjera · veče pod fenjerima" data-i18n-html-en="© <span id='year'></span> Night of Musical Lanterns · an evening under lanterns">© <span id="year"></span> Noć Muzičkih Fenjera · veče pod fenjerima</p>
   </footer>
 
-  <script src="js/main.js"></script>
-  <script>
-    (function () {
-      var buttons = document.querySelectorAll(".city-switch__btn");
-      var panels = document.querySelectorAll("[data-city-panel]");
-      var copies = document.querySelectorAll("[data-city-copy]");
-      function show(city) {
-        buttons.forEach(function (btn) {
-          var on = btn.getAttribute("data-city") === city;
-          btn.classList.toggle("is-active", on);
-          btn.setAttribute("aria-selected", on ? "true" : "false");
-        });
-        panels.forEach(function (panel) {
-          panel.hidden = panel.getAttribute("data-city-panel") !== city;
-        });
-        copies.forEach(function (copy) {
-          copy.hidden = copy.getAttribute("data-city-copy") !== city;
-        });
-      }
-      buttons.forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          show(btn.getAttribute("data-city"));
-        });
-      });
-      if (location.hash === "#novi-sad") show("novi-sad");
-    })();
-  </script>
+  <script src="js/main.js?v=city-switch"></script>
 </body>
 </html>
  

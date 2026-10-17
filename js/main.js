@@ -247,6 +247,28 @@
     return dp[standardTickets];
   }
 
+  function isRowHidden(row) {
+    return !!(row && row.closest("[hidden]"));
+  }
+
+  function firstVisibleBookableRow() {
+    if (!contactForm) return null;
+    var rows = contactForm.querySelectorAll(".concert-row:not(.concert-row--sold-out):not(.concert-row--past):not(.concert-row--coming-soon)");
+    for (var i = 0; i < rows.length; i += 1) {
+      if (!isRowHidden(rows[i])) return rows[i];
+    }
+    return null;
+  }
+
+  function firstVisibleActiveRow() {
+    if (!contactForm) return null;
+    var rows = contactForm.querySelectorAll(".concert-row.is-active");
+    for (var i = 0; i < rows.length; i += 1) {
+      if (!isRowHidden(rows[i])) return rows[i];
+    }
+    return null;
+  }
+
   function getConcertRows() {
     return contactForm ? contactForm.querySelectorAll(".concert-row") : [];
   }
@@ -262,7 +284,7 @@
   function collectBookings() {
     var bookings = [];
     Array.prototype.forEach.call(getConcertRows(), function (row) {
-      if (!isBookableRow(row)) return;
+      if (!isBookableRow(row) || row.closest("[hidden]")) return;
 
       var checkbox = row.querySelector('input[type="checkbox"]');
       var standardInput = row.querySelector(".ticket-input--standard");
@@ -468,13 +490,12 @@
 
     var bookings = collectBookings();
     if (!bookings.length) {
-      showFormValidation(messages.concertRequired, contactForm.querySelector(".concert-row:not(.concert-row--sold-out):not(.concert-row--past):not(.concert-row--coming-soon)"));
+      showFormValidation(messages.concertRequired, firstVisibleBookableRow());
       return false;
     }
 
     if (!hasSelectedTickets()) {
-      var firstActiveRow = contactForm.querySelector(".concert-row.is-active") ||
-        contactForm.querySelector(".concert-row:not(.concert-row--sold-out):not(.concert-row--past):not(.concert-row--coming-soon)");
+      var firstActiveRow = firstVisibleActiveRow() || firstVisibleBookableRow();
       showFormValidation(messages.ticketsRequired, firstActiveRow);
       if (firstActiveRow) firstActiveRow.classList.add("is-invalid");
       return false;
@@ -575,4 +596,32 @@
       showSuccessBanner();
     }
   }
+
+  var cityButtons = document.querySelectorAll(".city-switch__btn");
+  var cityPanels = document.querySelectorAll("[data-city-panel]");
+  var cityCopies = document.querySelectorAll("[data-city-copy]");
+
+  function showCity(city) {
+    cityButtons.forEach(function (btn) {
+      var on = btn.getAttribute("data-city") === city;
+      btn.classList.toggle("is-active", on);
+      btn.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    cityPanels.forEach(function (panel) {
+      panel.hidden = panel.getAttribute("data-city-panel") !== city;
+    });
+    cityCopies.forEach(function (copy) {
+      copy.hidden = copy.getAttribute("data-city-copy") !== city;
+    });
+    updatePriceEstimate();
+  }
+
+  cityButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      showCity(btn.getAttribute("data-city"));
+    });
+  });
+
+  if (location.hash === "#novi-sad") showCity("novi-sad");
+  if (location.hash === "#beograd") showCity("beograd");
 })();
