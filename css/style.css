@@ -1223,7 +1223,7 @@ main {
   align-items: center;
   justify-content: center;
   gap: clamp(1.75rem, 4vw, 2.75rem);
-  padding: 6.5rem 1.25rem 4rem;
+  padding: 5.75rem 1.25rem 8.5rem;
   text-align: center;
 }
 
@@ -1508,6 +1508,12 @@ main {
 }
 
 @media (max-width: 640px) {
+  .splash {
+    justify-content: flex-start;
+    gap: 1.15rem;
+    padding: 4.6rem 0.85rem 2.5rem;
+  }
+
   .venue-pick {
     gap: 0.85rem;
   }
