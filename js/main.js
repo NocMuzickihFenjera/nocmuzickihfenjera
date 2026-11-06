@@ -598,6 +598,7 @@
   }
 
   var cityButtons = document.querySelectorAll(".city-switch__btn");
+  var cityJumpButtons = document.querySelectorAll(".city-elsewhere__btn");
   var cityPanels = document.querySelectorAll("[data-city-panel]");
   var cityCopies = document.querySelectorAll("[data-city-copy]");
 
@@ -617,6 +618,12 @@
   }
 
   cityButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      showCity(btn.getAttribute("data-city"));
+    });
+  });
+
+  cityJumpButtons.forEach(function (btn) {
     btn.addEventListener("click", function () {
       showCity(btn.getAttribute("data-city"));
     });
